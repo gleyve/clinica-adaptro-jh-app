@@ -38,8 +38,8 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:postgresql://localhost:5432/ClinicaADAPTROJHApp
-    username: ClinicaADAPTROJHApp
-    password:
+    username: postgres
+    password: 84002235#
     hikari:
       poolName: Hikari
       auto-commit: false

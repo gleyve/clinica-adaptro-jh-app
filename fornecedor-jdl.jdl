@@ -1,0 +1,56 @@
+
+entity Fornecedor {
+	tipoPessoa TipoPessoa required,
+    numeroDocumento String unique minlength(11) maxlength(14),
+    nome String required minlength(5) maxlength(70),
+    nomeFantasia String maxlength(70),
+    email String maxlength(30) minlength(5) pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/),
+    celular String required maxlength(15),
+	telefone String maxlength(15),
+	logradouroNome String minlength(5) maxlength(70),
+    logradouroNumero String maxlength(4),
+    logradouroComplemento String maxlength(50),
+    bairro String minlength(3) maxlength(30),
+	cep String minlength(8) maxlength(8),
+	cidade String minlength(3) maxlength(30),
+	estado Estado,
+    observacao String
+}
+
+enum Estado {
+	AC("Acre"),
+	AL("Alagoas"),
+	AM("Amazonas"),
+	AP("Amapá"),
+	BA("Bahia"),
+	CE("Ceará"),
+	DF("Distrito Federal"),
+	ES("Espírito Santo"),
+	GO("Goiás"),
+	MA("Maranhão"),
+	MG("Minas Gerais"),
+	MS("Mato Grosso do Sul"),
+	MT("Mato Grosso"),
+	PA("Pará"),
+	PB("Paraíba"),
+	PE("Pernambuco"),
+	PI("Piauí"),
+	PR("Paraná"),
+	RJ("Rio de Janeiro"),
+	RN("Rio Grande do Norte"),
+	RO("Rondônia"),
+	RR("Roraima"),
+	RS("Rio Grande do Sul"),
+	SC("Santa Catarina"),
+	SE("Sergipe"),
+	SP("São Paulo"),
+	TO("Tocantins")
+}
+
+enum TipoPessoa {
+    F("FÍSICA"), 
+    J("JURÍDICA")
+}
+
+filter Fornecedor
+paginate Fornecedor with pagination
