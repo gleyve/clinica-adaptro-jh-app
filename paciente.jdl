@@ -120,7 +120,6 @@ relationship OneToMany {
 
 relationship ManyToOne {
     PlanejamentoEstrategico{user(login)} to User
-	ResponsavelPaciente{pacienteResposavel} to Paciente
 }
 
 relationship ManyToMany {
