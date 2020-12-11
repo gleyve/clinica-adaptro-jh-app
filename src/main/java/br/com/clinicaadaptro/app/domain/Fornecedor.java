@@ -87,8 +87,7 @@ public class Fornecedor implements Serializable {
     private String bairro;
 
     @Size(max = 8)
-    //@Pattern(regexp = "^[0-9]{5}-[0-9]{3}$")
-    @Pattern(regexp = "(\\\\d{8})")
+    @Pattern(regexp = "(\\d{2})(\\d{3})(\\d{3})")
     @Column(name = "cep", length = 8)
     private String cep;
 

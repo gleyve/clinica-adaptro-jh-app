@@ -74,8 +74,8 @@ public class FornecedorResourceIT {
     private static final String DEFAULT_BAIRRO = "AAAAAAAAAA";
     private static final String UPDATED_BAIRRO = "BBBBBBBBBB";
 
-    private static final String DEFAULT_CEP = "88672-389";
-    private static final String UPDATED_CEP = "50785-109";
+    private static final String DEFAULT_CEP = "88728892";
+    private static final String UPDATED_CEP = "07571920";
 
     private static final String DEFAULT_CIDADE = "AAAAAAAAAA";
     private static final String UPDATED_CIDADE = "BBBBBBBBBB";

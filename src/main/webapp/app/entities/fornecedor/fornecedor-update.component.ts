@@ -38,6 +38,7 @@ export class FornecedorUpdateComponent implements OnInit {
   } */
 
   // angular-input-masks
+  public observacao = '';
   public myModel = '';
   public mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
   // CPF: 932.463.073-4
@@ -52,25 +53,23 @@ export class FornecedorUpdateComponent implements OnInit {
   public celPhoneBrMask = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, '.', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
   public mascaraNascimento = [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
 
-  // How to use in html: [textMask]="{mask: cpfMask}"
-
   editForm = this.fb.group({
     id: [],
     tipoPessoa: [null, [Validators.required]],
-    //numeroCPF: [null, [Validators.maxLength(14), Validators.pattern('(\\d{3}.)(\\d{3}.)(\\d{3}-)(\\d{2})')]],
-    numeroCPF: [null, [Validators.required, NgBrazilValidators.cpf]],
-    numeroCNPJ: [null, [Validators.maxLength(18), Validators.pattern('(\\d{2}.)(\\d{3}.)(\\d{3}/)(\\d{4}-)(\\d{2})')]],
+    // numeroCPF: [null, [Validators.maxLength(14), Validators.pattern('(\\d{3}.)(\\d{3}.)(\\d{3}-)(\\d{2})')]],
+    numeroCPF: [null, [NgBrazilValidators.cpf]],
+    numeroCNPJ: [null, [NgBrazilValidators.cnpj]],
     numeroInscricaoEstadual: [null, [Validators.maxLength(9)]],
     nome: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
     nomeFantasia: [null, [Validators.maxLength(100)]],
     email: [null, [Validators.maxLength(120), Validators.pattern('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$')]],
-    telefone1: [null, [Validators.required, NgBrazilValidators.telefone]],
-    telefone2: [null, [Validators.required, NgBrazilValidators.telefone]],
+    telefone1: [null, [NgBrazilValidators.telefone]],
+    telefone2: [null, [NgBrazilValidators.telefone]],
     logradouroNome: [null, [Validators.minLength(2), Validators.maxLength(70)]],
     logradouroNumero: [null, [Validators.maxLength(4)]],
     logradouroComplemento: [null, [Validators.maxLength(50)]],
     bairro: [null, [Validators.minLength(2), Validators.maxLength(30)]],
-    cep: [null, [Validators.required, NgBrazilValidators.cep]],
+    cep: [null, [NgBrazilValidators.cep]],
     cidade: [null, [Validators.minLength(2), Validators.maxLength(30)]],
     estado: [],
     observacao: [null, [Validators.maxLength(1000)]],
@@ -126,23 +125,34 @@ export class FornecedorUpdateComponent implements OnInit {
       ...new Fornecedor(),
       id: this.editForm.get(['id'])!.value,
       tipoPessoa: this.editForm.get(['tipoPessoa'])!.value,
-      numeroCPF: this.cleanup(this.editForm.get(['numeroCPF'])!.value),
-      numeroCNPJ: this.cleanup(this.editForm.get(['numeroCNPJ'])!.value),
+      numeroCPF: this.cleanupMask(this.editForm.get(['numeroCPF'])!.value),
+      numeroCNPJ: this.cleanupMask(this.editForm.get(['numeroCNPJ'])!.value),
       numeroInscricaoEstadual: this.editForm.get(['numeroInscricaoEstadual'])!.value,
       nome: this.editForm.get(['nome'])!.value,
       nomeFantasia: this.editForm.get(['nomeFantasia'])!.value,
       email: this.editForm.get(['email'])!.value,
-      telefone1: this.cleanup(this.editForm.get(['telefone1'])!.value),
-      telefone2: this.cleanup(this.editForm.get(['telefone2'])!.value),
+      telefone1: this.cleanupMask(this.editForm.get(['telefone1'])!.value),
+      telefone2: this.cleanupMask(this.editForm.get(['telefone2'])!.value),
       logradouroNome: this.editForm.get(['logradouroNome'])!.value,
       logradouroNumero: this.editForm.get(['logradouroNumero'])!.value,
       logradouroComplemento: this.editForm.get(['logradouroComplemento'])!.value,
       bairro: this.editForm.get(['bairro'])!.value,
-      cep: this.cleanup(this.editForm.get(['cep'])!.value),
+      cep: this.cleanupMask(this.editForm.get(['cep'])!.value),
       cidade: this.editForm.get(['cidade'])!.value,
       estado: this.editForm.get(['estado'])!.value,
       observacao: this.editForm.get(['observacao'])!.value,
     };
+  }
+
+  mostraValor(): void {
+    const vlr = this.editForm.get(['cep'])!.value;
+    if (vlr == null) {
+      alert('Valor null = ' + vlr);
+    } else if (vlr === undefined) {
+      alert('undefined = ' + vlr);
+    } else if (vlr === '') {
+      alert('Valor em Branco = ' + vlr);
+    } else alert('valor = ' + vlr);
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IFornecedor>>): void {
@@ -161,7 +171,9 @@ export class FornecedorUpdateComponent implements OnInit {
     this.isSaving = false;
   }
 
-  cleanup(maskedData: string): string {
-    return maskedData.replace(/\D+/g, '');
+  cleanupMask(strMaskedData: any): any {
+    if (strMaskedData === null || strMaskedData === '' || strMaskedData === undefined) {
+      return (strMaskedData = undefined);
+    } else return strMaskedData.replace(/\D+/g, '');
   }
 }

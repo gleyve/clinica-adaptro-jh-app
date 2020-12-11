@@ -132,8 +132,8 @@
         "maxlength",
         "pattern"
       ],
-      "fieldValidateRulesMaxlength": "9",
-      "fieldValidateRulesPattern": "^[0-9]{5}-[0-9]{3}$"
+      "fieldValidateRulesMaxlength": "8",
+      "fieldValidateRulesPattern": "(\\d{2})(\\d{3})(\\d{3})"
     },
     {
       "fieldName": "cidade",
