@@ -1,0 +1,9 @@
+{
+  "clinicaAdaptrojhApp": {
+    "TipoCliente": {
+      "null": "",
+      "PACIENTE": "Paciente",
+      "OUTRO": "Responsável por paciente ou Outros"
+    }
+  }
+}

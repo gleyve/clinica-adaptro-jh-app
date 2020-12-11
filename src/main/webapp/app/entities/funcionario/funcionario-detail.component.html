@@ -1,0 +1,160 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="funcionario">
+            <h2><span jhiTranslate="clinicaAdaptrojhApp.funcionario.detail.title">Funcionario</span> {{ funcionario.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.nomeCompleto">Nome Completo</span></dt>
+                <dd>
+                    <span>{{ funcionario.nomeCompleto }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.foto">Foto</span></dt>
+                <dd>
+                    <div *ngIf="funcionario.foto">
+                        <a (click)="openFile(funcionario.fotoContentType, funcionario.foto)">
+                            <img [src]="'data:' + funcionario.fotoContentType + ';base64,' + funcionario.foto" style="max-width: 100%;" alt="funcionario image"/>
+                        </a>
+                        {{ funcionario.fotoContentType }}, {{ byteSize(funcionario.foto) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.dataNascimento">Data Nascimento</span></dt>
+                <dd>
+                    <span>{{ funcionario.dataNascimento }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.numeroConselhoProfissional">Numero Conselho Profissional</span></dt>
+                <dd>
+                    <span>{{ funcionario.numeroConselhoProfissional }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.cpf">Cpf</span></dt>
+                <dd>
+                    <span>{{ funcionario.cpf }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.rg">Rg</span></dt>
+                <dd>
+                    <span>{{ funcionario.rg }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.cnh">Cnh</span></dt>
+                <dd>
+                    <span>{{ funcionario.cnh }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.telefone1">Telefone 1</span></dt>
+                <dd>
+                    <span>{{ funcionario.telefone1 }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.telefone2">Telefone 2</span></dt>
+                <dd>
+                    <span>{{ funcionario.telefone2 }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.email">Email</span></dt>
+                <dd>
+                    <span>{{ funcionario.email }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.dataAdmissao">Data Admissao</span></dt>
+                <dd>
+                    <span>{{ funcionario.dataAdmissao }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.dataDesligamento">Data Desligamento</span></dt>
+                <dd>
+                    <span>{{ funcionario.dataDesligamento }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.salario">Salario</span></dt>
+                <dd>
+                    <span>{{ funcionario.salario }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.sexo">Sexo</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'clinicaAdaptrojhApp.Sexo.' + funcionario.sexo }}">{{ funcionario.sexo }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.estadoCivil">Estado Civil</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'clinicaAdaptrojhApp.EstadoCivil.' + funcionario.estadoCivil }}">{{ funcionario.estadoCivil }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.escolaridade">Escolaridade</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'clinicaAdaptrojhApp.Escolaridade.' + funcionario.escolaridade }}">{{ funcionario.escolaridade }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.funcao">Funcao</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'clinicaAdaptrojhApp.CategoriaFuncionario.' + funcionario.funcao }}">{{ funcionario.funcao }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.descOutraFuncao">Desc Outra Funcao</span></dt>
+                <dd>
+                    <span>{{ funcionario.descOutraFuncao }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.logradouroNome">Logradouro Nome</span></dt>
+                <dd>
+                    <span>{{ funcionario.logradouroNome }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.logradouroNumero">Logradouro Numero</span></dt>
+                <dd>
+                    <span>{{ funcionario.logradouroNumero }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.logradouroComplemento">Logradouro Complemento</span></dt>
+                <dd>
+                    <span>{{ funcionario.logradouroComplemento }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.bairro">Bairro</span></dt>
+                <dd>
+                    <span>{{ funcionario.bairro }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.proximidadesLogradouro">Proximidades Logradouro</span></dt>
+                <dd>
+                    <span>{{ funcionario.proximidadesLogradouro }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.cep">Cep</span></dt>
+                <dd>
+                    <span>{{ funcionario.cep }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.cidade">Cidade</span></dt>
+                <dd>
+                    <span>{{ funcionario.cidade }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.estado">Estado</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'clinicaAdaptrojhApp.Estado.' + funcionario.estado }}">{{ funcionario.estado }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.dataHoraCadastro">Data Hora Cadastro</span></dt>
+                <dd>
+                    <span>{{ funcionario.dataHoraCadastro }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.observacao">Observacao</span></dt>
+                <dd>
+                    <span>{{ funcionario.observacao }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.curriculo">Curriculo</span></dt>
+                <dd>
+                    <div *ngIf="funcionario.curriculo">
+                        <a (click)="openFile(funcionario.curriculoContentType, funcionario.curriculo)" jhiTranslate="entity.action.open">open</a>
+                        {{ funcionario.curriculoContentType }}, {{ byteSize(funcionario.curriculo) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.user">User</span></dt>
+                <dd>
+                    {{ funcionario.user?.login }}
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.especialidadeSaude">Especialidade Saude</span></dt>
+                <dd>
+                    <div *ngIf="funcionario.especialidadeSaude">
+                        <a [routerLink]="['/especialidade-saude', funcionario.especialidadeSaude?.id, 'view']">{{ funcionario.especialidadeSaude?.descricao }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/funcionario', funcionario.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

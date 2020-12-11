@@ -1,0 +1,54 @@
+{
+  "clinicaAdaptrojhApp": {
+    "cliente": {
+      "home": {
+        "title": "Clientes",
+        "createLabel": "Create a new Cliente",
+        "createOrEditLabel": "Create or edit a Cliente",
+        "notFound": "No Clientes found"
+      },
+      "created": "A new Cliente is created with identifier {{ param }}",
+      "updated": "A Cliente is updated with identifier {{ param }}",
+      "deleted": "A Cliente is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Cliente {{ id }}?"
+      },
+      "detail": {
+        "title": "Cliente"
+      },
+      "tipoCliente": "Tipo Cliente",
+      "matricula": "Matricula",
+      "nomeCompleto": "Nome Completo",
+      "foto": "Foto",
+      "dataNascimento": "Data Nascimento",
+      "sexo": "Sexo",
+      "estadoCivil": "Estado Civil",
+      "escolaridade": "Escolaridade",
+      "convenio": "Convenio",
+      "numCarteirinhaConvenio": "Num Carteirinha Convenio",
+      "dataValidadeConvenio": "Data Validade Convenio",
+      "procedencia": "Procedencia",
+      "profissao": "Profissao",
+      "cpf": "Cpf",
+      "rg": "Rg",
+      "telefone1": "Telefone 1",
+      "telefone2": "Telefone 2",
+      "email": "Email",
+      "logradouroNome": "Logradouro Nome",
+      "logradouroNumero": "Logradouro Numero",
+      "logradouroComplemento": "Logradouro Complemento",
+      "bairro": "Bairro",
+      "cep": "Cep",
+      "cidade": "Cidade",
+      "estado": "Estado",
+      "parentescoResponsavel": "Parentesco Responsavel",
+      "parentescoResponsavelFinanceiro": "Parentesco Responsavel Financeiro",
+      "dataHoraCadastro": "Data Hora Cadastro",
+      "ativo": "Ativo",
+      "observacao": "Observacao",
+      "planoEstrategico": "Plano Estrategico",
+      "responsavel": "Responsavel",
+      "responsavelFinanceiro": "Responsavel Financeiro"
+    }
+  }
+}

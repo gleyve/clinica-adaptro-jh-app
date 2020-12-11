@@ -1,0 +1,27 @@
+{
+  "clinicaAdaptrojhApp": {
+    "planoEstrategico": {
+      "home": {
+        "title": "Plano Estrategicos",
+        "createLabel": "Criar novo Plano Estrategico",
+        "createOrEditLabel": "Criar ou editar Plano Estrategico",
+        "notFound": "Nenhum Plano Estrategico encontrado"
+      },
+      "created": "Um novo Plano Estrategico foi criado com o identificador {{ param }}",
+      "updated": "Um Plano Estrategico foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Plano Estrategico foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Plano Estrategico {{ id }}?"
+      },
+      "detail": {
+        "title": "Plano Estrategico"
+      },
+      "dataInicio": "Data Inicio",
+      "dataFim": "Data Fim",
+      "detalhamento": "Detalhamento",
+      "dataHoraCadastro": "Data Hora Cadastro",
+      "user": "User",
+      "cliente": "Cliente"
+    }
+  }
+}

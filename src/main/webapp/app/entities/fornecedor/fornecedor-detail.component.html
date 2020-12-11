@@ -1,0 +1,94 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="fornecedor">
+            <h2><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.detail.title">Fornecedor</span> {{ fornecedor.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.tipoPessoa">Tipo Pessoa</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'clinicaAdaptrojhApp.TipoPessoa.' + fornecedor.tipoPessoa }}">{{ fornecedor.tipoPessoa }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.numeroCPF">Numero CPF</span></dt>
+                <dd>
+                    <span>{{ fornecedor.numeroCPF }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.numeroCNPJ">Numero CNPJ</span></dt>
+                <dd>
+                    <span>{{ fornecedor.numeroCNPJ }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.numeroInscricaoEstadual">Numero Inscricao Estadual</span></dt>
+                <dd>
+                    <span>{{ fornecedor.numeroInscricaoEstadual }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.nome">Nome</span></dt>
+                <dd>
+                    <span>{{ fornecedor.nome }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.nomeFantasia">Nome Fantasia</span></dt>
+                <dd>
+                    <span>{{ fornecedor.nomeFantasia }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.email">Email</span></dt>
+                <dd>
+                    <span>{{ fornecedor.email }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.telefone1">Telefone 1</span></dt>
+                <dd>
+                    <span>{{ fornecedor.telefone1 }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.telefone2">Telefone 2</span></dt>
+                <dd>
+                    <span>{{ fornecedor.telefone2 }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.logradouroNome">Logradouro Nome</span></dt>
+                <dd>
+                    <span>{{ fornecedor.logradouroNome }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.logradouroNumero">Logradouro Numero</span></dt>
+                <dd>
+                    <span>{{ fornecedor.logradouroNumero }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.logradouroComplemento">Logradouro Complemento</span></dt>
+                <dd>
+                    <span>{{ fornecedor.logradouroComplemento }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.bairro">Bairro</span></dt>
+                <dd>
+                    <span>{{ fornecedor.bairro }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.cep">Cep</span></dt>
+                <dd>
+                    <span>{{ fornecedor.cep }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.cidade">Cidade</span></dt>
+                <dd>
+                    <span>{{ fornecedor.cidade }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.estado">Estado</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'clinicaAdaptrojhApp.Estado.' + fornecedor.estado }}">{{ fornecedor.estado }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.observacao">Observacao</span></dt>
+                <dd>
+                    <span>{{ fornecedor.observacao }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/fornecedor', fornecedor.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

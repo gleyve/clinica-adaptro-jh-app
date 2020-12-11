@@ -1,0 +1,163 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="cliente">
+            <h2><span jhiTranslate="clinicaAdaptrojhApp.cliente.detail.title">Cliente</span> {{ cliente.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.tipoCliente">Tipo Cliente</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'clinicaAdaptrojhApp.TipoCliente.' + cliente.tipoCliente }}">{{ cliente.tipoCliente }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.matricula">Matricula</span></dt>
+                <dd>
+                    <span>{{ cliente.matricula }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.nomeCompleto">Nome Completo</span></dt>
+                <dd>
+                    <span>{{ cliente.nomeCompleto }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.foto">Foto</span></dt>
+                <dd>
+                    <div *ngIf="cliente.foto">
+                        <a (click)="openFile(cliente.fotoContentType, cliente.foto)">
+                            <img [src]="'data:' + cliente.fotoContentType + ';base64,' + cliente.foto" style="max-width: 100%;" alt="cliente image"/>
+                        </a>
+                        {{ cliente.fotoContentType }}, {{ byteSize(cliente.foto) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.dataNascimento">Data Nascimento</span></dt>
+                <dd>
+                    <span>{{ cliente.dataNascimento }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.sexo">Sexo</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'clinicaAdaptrojhApp.Sexo.' + cliente.sexo }}">{{ cliente.sexo }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.estadoCivil">Estado Civil</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'clinicaAdaptrojhApp.EstadoCivil.' + cliente.estadoCivil }}">{{ cliente.estadoCivil }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.escolaridade">Escolaridade</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'clinicaAdaptrojhApp.Escolaridade.' + cliente.escolaridade }}">{{ cliente.escolaridade }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.convenio">Convenio</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'clinicaAdaptrojhApp.Convenio.' + cliente.convenio }}">{{ cliente.convenio }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.numCarteirinhaConvenio">Num Carteirinha Convenio</span></dt>
+                <dd>
+                    <span>{{ cliente.numCarteirinhaConvenio }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.dataValidadeConvenio">Data Validade Convenio</span></dt>
+                <dd>
+                    <span>{{ cliente.dataValidadeConvenio }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.procedencia">Procedencia</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'clinicaAdaptrojhApp.Procedencia.' + cliente.procedencia }}">{{ cliente.procedencia }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.profissao">Profissao</span></dt>
+                <dd>
+                    <span>{{ cliente.profissao }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.cpf">Cpf</span></dt>
+                <dd>
+                    <span>{{ cliente.cpf }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.rg">Rg</span></dt>
+                <dd>
+                    <span>{{ cliente.rg }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.telefone1">Telefone 1</span></dt>
+                <dd>
+                    <span>{{ cliente.telefone1 }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.telefone2">Telefone 2</span></dt>
+                <dd>
+                    <span>{{ cliente.telefone2 }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.email">Email</span></dt>
+                <dd>
+                    <span>{{ cliente.email }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.logradouroNome">Logradouro Nome</span></dt>
+                <dd>
+                    <span>{{ cliente.logradouroNome }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.logradouroNumero">Logradouro Numero</span></dt>
+                <dd>
+                    <span>{{ cliente.logradouroNumero }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.logradouroComplemento">Logradouro Complemento</span></dt>
+                <dd>
+                    <span>{{ cliente.logradouroComplemento }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.bairro">Bairro</span></dt>
+                <dd>
+                    <span>{{ cliente.bairro }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.cep">Cep</span></dt>
+                <dd>
+                    <span>{{ cliente.cep }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.cidade">Cidade</span></dt>
+                <dd>
+                    <span>{{ cliente.cidade }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.estado">Estado</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'clinicaAdaptrojhApp.Estado.' + cliente.estado }}">{{ cliente.estado }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.parentescoResponsavel">Parentesco Responsavel</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'clinicaAdaptrojhApp.TipoParentesco.' + cliente.parentescoResponsavel }}">{{ cliente.parentescoResponsavel }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.parentescoResponsavelFinanceiro">Parentesco Responsavel Financeiro</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'clinicaAdaptrojhApp.TipoParentesco.' + cliente.parentescoResponsavelFinanceiro }}">{{ cliente.parentescoResponsavelFinanceiro }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.dataHoraCadastro">Data Hora Cadastro</span></dt>
+                <dd>
+                    <span>{{ cliente.dataHoraCadastro }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.ativo">Ativo</span></dt>
+                <dd>
+                    <span>{{ cliente.ativo }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.observacao">Observacao</span></dt>
+                <dd>
+                    <span>{{ cliente.observacao }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.responsavel">Responsavel</span></dt>
+                <dd>
+                    <div *ngIf="cliente.responsavel">
+                        <a [routerLink]="['/cliente', cliente.responsavel?.id, 'view']">{{ cliente.responsavel?.nomeCompleto }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.responsavelFinanceiro">Responsavel Financeiro</span></dt>
+                <dd>
+                    <div *ngIf="cliente.responsavelFinanceiro">
+                        <a [routerLink]="['/cliente', cliente.responsavelFinanceiro?.id, 'view']">{{ cliente.responsavelFinanceiro?.nomeCompleto }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/cliente', cliente.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

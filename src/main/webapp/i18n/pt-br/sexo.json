@@ -1,0 +1,9 @@
+{
+  "clinicaAdaptrojhApp": {
+    "Sexo": {
+      "null": "",
+      "M": "Masculino",
+      "F": "Feminino"
+    }
+  }
+}

@@ -1,0 +1,273 @@
+{
+  "name": "Cliente",
+  "fields": [
+    {
+      "fieldName": "tipoCliente",
+      "fieldType": "TipoCliente",
+      "fieldValues": "PACIENTE (Paciente),OUTRO (Responsável por paciente ou Outros)",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "matricula",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "unique",
+        "minlength",
+        "maxlength"
+      ],
+      "fieldValidateRulesMinlength": "6",
+      "fieldValidateRulesMaxlength": "6"
+    },
+    {
+      "fieldName": "nomeCompleto",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required",
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "foto",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image",
+      "fieldValidateRules": [
+        "maxbytes"
+      ],
+      "fieldValidateRulesMaxbytes": "2024"
+    },
+    {
+      "fieldName": "dataNascimento",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "sexo",
+      "fieldType": "Sexo",
+      "fieldValues": "M (Masculino),F (Feminino)",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "estadoCivil",
+      "fieldType": "EstadoCivil",
+      "fieldValues": "SOLTEIRO (Solteiro),CASADO (Casado),SEPARADO (Separado),DIVORCIADO (Divorciado),VIUVO (Viúvo),UNIAO_ESTAVEL (União Estável),OUTRO (Outro)"
+    },
+    {
+      "fieldName": "escolaridade",
+      "fieldType": "Escolaridade",
+      "fieldValues": "EFC (Ensino Fundamental Completo),EFI (Ensino Fundamental Incompleto),ESC (Ensino Superior Completo),ESI (Ensino Superior Incompleto),PGC (Pós-Graduação Completo),PGI (Pós-Graduação Incompleto),MES (Mestrado),DOU (Doutorado)"
+    },
+    {
+      "fieldName": "convenio",
+      "fieldType": "Convenio",
+      "fieldValues": "UNIMED_CE (UNIMED Ceará),OUTRO (Outro)",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "numCarteirinhaConvenio",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "unique",
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "20"
+    },
+    {
+      "fieldName": "dataValidadeConvenio",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "procedencia",
+      "fieldType": "Procedencia",
+      "fieldValues": "ENCAMINHAMENTO_MEDICO (Encaminhamento Médico),INDICACAO_PACIENTE (Indicação de Paciente),INDICACAO_MEDICO (Parente de um Paciente),INTERNET (Conheceu pela Internet),OUTRO (Outro)"
+    },
+    {
+      "fieldName": "profissao",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "minlength",
+        "maxlength"
+      ],
+      "fieldValidateRulesMinlength": "2",
+      "fieldValidateRulesMaxlength": "70"
+    },
+    {
+      "fieldName": "cpf",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "unique",
+        "maxlength",
+        "pattern"
+      ],
+      "fieldValidateRulesMaxlength": "11",
+      "fieldValidateRulesPattern": "(\\d{3})(\\d{3})(\\d{3})(\\d{2})"
+    },
+    {
+      "fieldName": "rg",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "unique",
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "15"
+    },
+    {
+      "fieldName": "telefone1",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength",
+        "pattern"
+      ],
+      "fieldValidateRulesMaxlength": "15",
+      "fieldValidateRulesPattern": "^(\\d{2,3}|\\(\\d{2,3}\\))?[ ]?\\d{3,4}[-]?\\d{3,4}$"
+    },
+    {
+      "fieldName": "telefone2",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength",
+        "pattern"
+      ],
+      "fieldValidateRulesMaxlength": "15",
+      "fieldValidateRulesPattern": "^(\\d{2,3}|\\(\\d{2,3}\\))?[ ]?\\d{3,4}[-]?\\d{3,4}$"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength",
+        "pattern"
+      ],
+      "fieldValidateRulesMaxlength": "120",
+      "fieldValidateRulesPattern": "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$"
+    },
+    {
+      "fieldName": "logradouroNome",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "minlength",
+        "maxlength"
+      ],
+      "fieldValidateRulesMinlength": "2",
+      "fieldValidateRulesMaxlength": "70"
+    },
+    {
+      "fieldName": "logradouroNumero",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "5"
+    },
+    {
+      "fieldName": "logradouroComplemento",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "bairro",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "minlength",
+        "maxlength"
+      ],
+      "fieldValidateRulesMinlength": "2",
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "cep",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength",
+        "pattern"
+      ],
+      "fieldValidateRulesMaxlength": "9",
+      "fieldValidateRulesPattern": "^[0-9]{5}-[0-9]{3}$"
+    },
+    {
+      "fieldName": "cidade",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "minlength",
+        "maxlength"
+      ],
+      "fieldValidateRulesMinlength": "2",
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "estado",
+      "fieldType": "Estado",
+      "fieldValues": "AC (Acre),AL (Alagoas),AM (Amazonas),AP (Amapá),BA (Bahia),CE (Ceará),DF (Distrito Federal),ES (Espírito Santo),GO (Goiás),MA (Maranhão),MG (Minas Gerais),MS (Mato Grosso do Sul),MT (Mato Grosso),PA (Pará),PB (Paraíba),PE (Pernambuco),PI (Piauí),PR (Paraná),RJ (Rio de Janeiro),RN (Rio Grande do Norte),RO (Rondônia),RR (Roraima),RS (Rio Grande do Sul),SC (Santa Catarina),SE (Sergipe),SP (São Paulo),TO (Tocantins)"
+    },
+    {
+      "fieldName": "parentescoResponsavel",
+      "fieldType": "TipoParentesco",
+      "fieldValues": "PAI (Pai),MAE (Mãe),AVO (Avô(ó)),TIO (Tio(a)),AMIGO (Amigo(a)),CONJUGE (Esposo(a)),OUTURO (Outro)"
+    },
+    {
+      "fieldName": "parentescoResponsavelFinanceiro",
+      "fieldType": "TipoParentesco",
+      "fieldValues": "PAI (Pai),MAE (Mãe),AVO (Avô(ó)),TIO (Tio(a)),AMIGO (Amigo(a)),CONJUGE (Esposo(a)),OUTURO (Outro)"
+    },
+    {
+      "fieldName": "dataHoraCadastro",
+      "fieldType": "Instant",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "ativo",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "observacao",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "1000"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "planoEstrategico",
+      "otherEntityRelationshipName": "cliente",
+      "relationshipName": "planoEstrategico"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "cliente",
+      "otherEntityRelationshipName": "cliente",
+      "relationshipName": "responsavel",
+      "otherEntityField": "nomeCompleto"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "cliente",
+      "otherEntityRelationshipName": "cliente",
+      "relationshipName": "responsavelFinanceiro",
+      "otherEntityField": "nomeCompleto"
+    }
+  ],
+  "changelogDate": "20201208074135",
+  "entityTableName": "cliente",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

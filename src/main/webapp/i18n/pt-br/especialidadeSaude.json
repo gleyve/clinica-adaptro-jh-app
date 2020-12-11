@@ -1,0 +1,24 @@
+{
+  "clinicaAdaptrojhApp": {
+    "especialidadeSaude": {
+      "home": {
+        "title": "Especialidade Saudes",
+        "createLabel": "Criar novo Especialidade Saude",
+        "createOrEditLabel": "Criar ou editar Especialidade Saude",
+        "notFound": "Nenhum Especialidade Saude encontrado"
+      },
+      "created": "Um novo Especialidade Saude foi criado com o identificador {{ param }}",
+      "updated": "Um Especialidade Saude foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Especialidade Saude foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Especialidade Saude {{ id }}?"
+      },
+      "detail": {
+        "title": "Especialidade Saude"
+      },
+      "descricao": "Descricao",
+      "sigla": "Sigla",
+      "ativo": "Ativo"
+    }
+  }
+}

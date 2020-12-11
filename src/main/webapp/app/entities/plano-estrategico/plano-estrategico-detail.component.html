@@ -1,0 +1,52 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="planoEstrategico">
+            <h2><span jhiTranslate="clinicaAdaptrojhApp.planoEstrategico.detail.title">Plano Estrategico</span> {{ planoEstrategico.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.planoEstrategico.dataInicio">Data Inicio</span></dt>
+                <dd>
+                    <span>{{ planoEstrategico.dataInicio }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.planoEstrategico.dataFim">Data Fim</span></dt>
+                <dd>
+                    <span>{{ planoEstrategico.dataFim }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.planoEstrategico.detalhamento">Detalhamento</span></dt>
+                <dd>
+                    <span>{{ planoEstrategico.detalhamento }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.planoEstrategico.dataHoraCadastro">Data Hora Cadastro</span></dt>
+                <dd>
+                    <span>{{ planoEstrategico.dataHoraCadastro }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.planoEstrategico.user">User</span></dt>
+                <dd>
+                    {{ planoEstrategico.user?.login }}
+                </dd>
+                <dt><span jhiTranslate="clinicaAdaptrojhApp.planoEstrategico.cliente">Cliente</span></dt>
+                <dd>
+                    <div *ngIf="planoEstrategico.cliente">
+                        <a [routerLink]="['/cliente', planoEstrategico.cliente?.id, 'view']">{{ planoEstrategico.cliente?.nomeCompleto }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/plano-estrategico', planoEstrategico.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

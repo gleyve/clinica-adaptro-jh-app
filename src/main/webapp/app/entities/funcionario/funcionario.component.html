@@ -1,0 +1,145 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="clinicaAdaptrojhApp.funcionario.home.title">Funcionarios</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-funcionario" [routerLink]="['/funcionario/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="clinicaAdaptrojhApp.funcionario.home.createLabel">
+            Create a new Funcionario
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="funcionarios?.length === 0">
+        <span jhiTranslate="clinicaAdaptrojhApp.funcionario.home.notFound">No funcionarios found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="funcionarios && funcionarios.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="nomeCompleto"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.nomeCompleto">Nome Completo</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="foto"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.foto">Foto</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="dataNascimento"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.dataNascimento">Data Nascimento</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="numeroConselhoProfissional"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.numeroConselhoProfissional">Numero Conselho Profissional</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="cpf"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.cpf">Cpf</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="rg"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.rg">Rg</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="cnh"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.cnh">Cnh</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="telefone1"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.telefone1">Telefone 1</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="telefone2"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.telefone2">Telefone 2</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="email"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.email">Email</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="dataAdmissao"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.dataAdmissao">Data Admissao</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="dataDesligamento"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.dataDesligamento">Data Desligamento</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="salario"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.salario">Salario</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="sexo"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.sexo">Sexo</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="estadoCivil"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.estadoCivil">Estado Civil</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="escolaridade"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.escolaridade">Escolaridade</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="funcao"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.funcao">Funcao</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="descOutraFuncao"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.descOutraFuncao">Desc Outra Funcao</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="logradouroNome"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.logradouroNome">Logradouro Nome</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="logradouroNumero"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.logradouroNumero">Logradouro Numero</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="logradouroComplemento"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.logradouroComplemento">Logradouro Complemento</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="bairro"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.bairro">Bairro</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="proximidadesLogradouro"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.proximidadesLogradouro">Proximidades Logradouro</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="cep"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.cep">Cep</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="cidade"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.cidade">Cidade</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="estado"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.estado">Estado</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="dataHoraCadastro"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.dataHoraCadastro">Data Hora Cadastro</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="observacao"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.observacao">Observacao</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="curriculo"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.curriculo">Curriculo</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="user.login"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.user">User</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="especialidadeSaude.descricao"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.especialidadeSaude">Especialidade Saude</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let funcionario of funcionarios ;trackBy: trackId">
+                    <td><a [routerLink]="['/funcionario', funcionario.id, 'view']">{{ funcionario.id }}</a></td>
+                    <td>{{ funcionario.nomeCompleto }}</td>
+                    <td>
+                        <a *ngIf="funcionario.foto" (click)="openFile(funcionario.fotoContentType, funcionario.foto)">
+                            <img [src]="'data:' + funcionario.fotoContentType + ';base64,' + funcionario.foto" style="max-height: 30px;" alt="funcionario image"/>
+                        </a>
+                        <span *ngIf="funcionario.foto">{{ funcionario.fotoContentType }}, {{ byteSize(funcionario.foto) }}</span>
+                    </td>
+                    <td>{{ funcionario.dataNascimento | date:'mediumDate' }}</td>
+                    <td>{{ funcionario.numeroConselhoProfissional }}</td>
+                    <td>{{ funcionario.cpf }}</td>
+                    <td>{{ funcionario.rg }}</td>
+                    <td>{{ funcionario.cnh }}</td>
+                    <td>{{ funcionario.telefone1 }}</td>
+                    <td>{{ funcionario.telefone2 }}</td>
+                    <td>{{ funcionario.email }}</td>
+                    <td>{{ funcionario.dataAdmissao | date:'mediumDate' }}</td>
+                    <td>{{ funcionario.dataDesligamento | date:'mediumDate' }}</td>
+                    <td>{{ funcionario.salario }}</td>
+                    <td jhiTranslate="{{ 'clinicaAdaptrojhApp.Sexo.' + funcionario.sexo }}">{{ funcionario.sexo }}</td>
+                    <td jhiTranslate="{{ 'clinicaAdaptrojhApp.EstadoCivil.' + funcionario.estadoCivil }}">{{ funcionario.estadoCivil }}</td>
+                    <td jhiTranslate="{{ 'clinicaAdaptrojhApp.Escolaridade.' + funcionario.escolaridade }}">{{ funcionario.escolaridade }}</td>
+                    <td jhiTranslate="{{ 'clinicaAdaptrojhApp.CategoriaFuncionario.' + funcionario.funcao }}">{{ funcionario.funcao }}</td>
+                    <td>{{ funcionario.descOutraFuncao }}</td>
+                    <td>{{ funcionario.logradouroNome }}</td>
+                    <td>{{ funcionario.logradouroNumero }}</td>
+                    <td>{{ funcionario.logradouroComplemento }}</td>
+                    <td>{{ funcionario.bairro }}</td>
+                    <td>{{ funcionario.proximidadesLogradouro }}</td>
+                    <td>{{ funcionario.cep }}</td>
+                    <td>{{ funcionario.cidade }}</td>
+                    <td jhiTranslate="{{ 'clinicaAdaptrojhApp.Estado.' + funcionario.estado }}">{{ funcionario.estado }}</td>
+                    <td>{{ funcionario.dataHoraCadastro | date:'medium' }}</td>
+                    <td>{{ funcionario.observacao }}</td>
+                    <td>
+                        <a *ngIf="funcionario.curriculo" (click)="openFile(funcionario.curriculoContentType, funcionario.curriculo)" jhiTranslate="entity.action.open">open</a>
+                        <span *ngIf="funcionario.curriculo">{{ funcionario.curriculoContentType }}, {{ byteSize(funcionario.curriculo) }}</span>
+                    </td>
+                    <td>
+                        {{ funcionario.user?.login }}
+                    </td>
+                    <td>
+                        <div *ngIf="funcionario.especialidadeSaude">
+                            <a [routerLink]="['/especialidade-saude', funcionario.especialidadeSaude?.id, 'view']" >{{ funcionario.especialidadeSaude?.descricao }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/funcionario', funcionario.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/funcionario', funcionario.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(funcionario)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="funcionarios && funcionarios.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

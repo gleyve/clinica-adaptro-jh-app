@@ -1,0 +1,65 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="clinicaAdaptrojhApp.especialidadeSaude.home.title">Especialidade Saudes</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-especialidade-saude" [routerLink]="['/especialidade-saude/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="clinicaAdaptrojhApp.especialidadeSaude.home.createLabel">
+            Create a new Especialidade Saude
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="especialidadeSaudes?.length === 0">
+        <span jhiTranslate="clinicaAdaptrojhApp.especialidadeSaude.home.notFound">No especialidadeSaudes found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="especialidadeSaudes && especialidadeSaudes.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="descricao"><span jhiTranslate="clinicaAdaptrojhApp.especialidadeSaude.descricao">Descricao</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="sigla"><span jhiTranslate="clinicaAdaptrojhApp.especialidadeSaude.sigla">Sigla</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="ativo"><span jhiTranslate="clinicaAdaptrojhApp.especialidadeSaude.ativo">Ativo</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+                <tr *ngFor="let especialidadeSaude of especialidadeSaudes ;trackBy: trackId">
+                    <td><a [routerLink]="['/especialidade-saude', especialidadeSaude.id, 'view']">{{ especialidadeSaude.id }}</a></td>
+                    <td>{{ especialidadeSaude.descricao }}</td>
+                    <td>{{ especialidadeSaude.sigla }}</td>
+                    <td>{{ especialidadeSaude.ativo }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/especialidade-saude', especialidadeSaude.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/especialidade-saude', especialidadeSaude.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(especialidadeSaude)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

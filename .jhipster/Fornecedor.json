@@ -1,0 +1,174 @@
+{
+  "name": "Fornecedor",
+  "fields": [
+    {
+      "fieldName": "tipoPessoa",
+      "fieldType": "TipoPessoa",
+      "fieldValues": "F (Pessoa Física (CPF)),J (Pessoa Jurídica (CNPJ))",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "numeroCPF",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "unique",
+        "maxlength",
+        "pattern"
+      ],
+      "fieldValidateRulesMaxlength": "11",
+      "fieldValidateRulesPattern": "(\\d{3})(\\d{3})(\\d{3})(\\d{2})"
+    },
+    {
+      "fieldName": "numeroCNPJ",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "unique",
+        "maxlength",
+        "pattern"
+      ],
+      "fieldValidateRulesMaxlength": "15",
+      "fieldValidateRulesPattern": "(\\d{2})(\\d{3})(\\d{3})(\\d{4})(\\d{2})"
+    },
+    {
+      "fieldName": "numeroInscricaoEstadual",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "unique",
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "9"
+    },
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required",
+        "minlength",
+        "maxlength"
+      ],
+      "fieldValidateRulesMinlength": "3",
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "nomeFantasia",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength",
+        "pattern"
+      ],
+      "fieldValidateRulesMaxlength": "120",
+      "fieldValidateRulesPattern": "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$"
+    },
+    {
+      "fieldName": "telefone1",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength",
+        "pattern"
+      ],
+      "fieldValidateRulesMaxlength": "15",
+      "fieldValidateRulesPattern": "^(\\d{2,3}|\\(\\d{2,3}\\))?[ ]?\\d{3,4}[-]?\\d{3,4}$"
+    },
+    {
+      "fieldName": "telefone2",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength",
+        "pattern"
+      ],
+      "fieldValidateRulesMaxlength": "15",
+      "fieldValidateRulesPattern": "^(\\d{2,3}|\\(\\d{2,3}\\))?[ ]?\\d{3,4}[-]?\\d{3,4}$"
+    },
+    {
+      "fieldName": "logradouroNome",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "minlength",
+        "maxlength"
+      ],
+      "fieldValidateRulesMinlength": "2",
+      "fieldValidateRulesMaxlength": "70"
+    },
+    {
+      "fieldName": "logradouroNumero",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "4"
+    },
+    {
+      "fieldName": "logradouroComplemento",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "bairro",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "minlength",
+        "maxlength"
+      ],
+      "fieldValidateRulesMinlength": "2",
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "cep",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength",
+        "pattern"
+      ],
+      "fieldValidateRulesMaxlength": "9",
+      "fieldValidateRulesPattern": "^[0-9]{5}-[0-9]{3}$"
+    },
+    {
+      "fieldName": "cidade",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "minlength",
+        "maxlength"
+      ],
+      "fieldValidateRulesMinlength": "2",
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "estado",
+      "fieldType": "Estado",
+      "fieldValues": "AC (Acre),AL (Alagoas),AM (Amazonas),AP (Amapá),BA (Bahia),CE (Ceará),DF (Distrito Federal),ES (Espírito Santo),GO (Goiás),MA (Maranhão),MG (Minas Gerais),MS (Mato Grosso do Sul),MT (Mato Grosso),PA (Pará),PB (Paraíba),PE (Pernambuco),PI (Piauí),PR (Paraná),RJ (Rio de Janeiro),RN (Rio Grande do Norte),RO (Rondônia),RR (Roraima),RS (Rio Grande do Sul),SC (Santa Catarina),SE (Sergipe),SP (São Paulo),TO (Tocantins)"
+    },
+    {
+      "fieldName": "observacao",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "1000"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20201208074634",
+  "entityTableName": "fornecedor",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

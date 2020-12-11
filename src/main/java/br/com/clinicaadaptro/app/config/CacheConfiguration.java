@@ -50,6 +50,16 @@ public class CacheConfiguration {
             createCache(cm, br.com.clinicaadaptro.app.domain.User.class.getName() + ".authorities");
             createCache(cm, br.com.clinicaadaptro.app.domain.PersistentToken.class.getName());
             createCache(cm, br.com.clinicaadaptro.app.domain.User.class.getName() + ".persistentTokens");
+            createCache(cm, br.com.clinicaadaptro.app.domain.Fornecedor.class.getName());
+            createCache(cm, br.com.clinicaadaptro.app.domain.Cliente.class.getName());
+            createCache(cm, br.com.clinicaadaptro.app.domain.Cliente.class.getName() + ".responsavel1s");
+            createCache(cm, br.com.clinicaadaptro.app.domain.Cliente.class.getName() + ".responsavel2s");
+            createCache(cm, br.com.clinicaadaptro.app.domain.Cliente.class.getName() + ".dependente1s");
+            createCache(cm, br.com.clinicaadaptro.app.domain.Cliente.class.getName() + ".dependente2s");
+            createCache(cm, br.com.clinicaadaptro.app.domain.PlanoEstrategico.class.getName());
+            createCache(cm, br.com.clinicaadaptro.app.domain.EspecialidadeSaude.class.getName());
+            createCache(cm, br.com.clinicaadaptro.app.domain.Funcionario.class.getName());
+            createCache(cm, br.com.clinicaadaptro.app.domain.Cliente.class.getName() + ".planoEstrategicos");
             // jhipster-needle-ehcache-add-entry
         };
     }

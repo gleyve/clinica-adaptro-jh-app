@@ -1,9 +1,7 @@
-DEFAULT_MIN_LENGTH = 4
+DEFAULT_MIN_LENGTH = 3
 DEFAULT_MAX_LENGTH = 100
 
-entity User{}
-
-enum TipoResponsavel{
+enum TipoParentesco{
 	PAI("Pai"),
     MAE("Mãe"),
     AVO("Avô(ó)"),
@@ -22,7 +20,8 @@ enum Procedencia{
 	ENCAMINHAMENTO_MEDICO("Encaminhamento Médico"),
     INDICACAO_PACIENTE("Indicação de Paciente"),
     INDICACAO_MEDICO("Guia Médico"),
-    INTERNET("Internet"),
+    INDICACAO_MEDICO("Parente de um Paciente"),
+    INTERNET("Conheceu pela Internet"),
     OUTRO("Outro")
 }
 
@@ -51,6 +50,12 @@ enum Sexo{
 	MASC("MASCULINO"),
     FEM("FEMININO")
 }
+
+enum TipoCliente{
+    PACIENTE("Paciente"),
+	OUTRO("Responsável por paciente ou Outros")
+}
+
 
 enum Estado {
 	AC("Acre"),
@@ -82,55 +87,49 @@ enum Estado {
 	TO("Tocantins")
 }
 
-entity Paciente {
-	matricula String minlength(11) maxlength(11),
+entity Cliente {
+	TipoCliente TipoCliente required,
+	matricula String unique minlength(11) maxlength(11),
     nomeCompleto String required maxlength(DEFAULT_MAX_LENGTH),
-    foto ImageBlob,
+    foto ImageBlob maxbytes(2024),
     dataNascimento LocalDate required,
     sexo Sexo required,
     estadoCivil EstadoCivil required,
     escolaridade Escolaridade,
 	convenio Convenio required,
-    numCarteirinhaConvenio String,
+    numCarteirinhaConvenio String unique,
     dataValidadeConvenio LocalDate,
     procedencia Procedencia,
     profissao String maxlength(50),
-    cpf String minlength(11) maxlength(11),
-    rg String maxlength(15),
-    telefone1 String required minlength(11) maxlength(15),
-    telefone2 String minlength(11) maxlength(15),
-    email String maxlength(50) minlength(5) pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/),
+    cpf String unique pattern (/(\d{3})(\d{3})(\d{3})(\d{2})/),
+    rg String unique maxlength(15),
+    telefone1 String required pattern(/^(\d{2,3}|\(\d{2,3}\))?[ ]?\d{3,4}[-]?\d{3,4}$/),
+    telefone2 String pattern(/^(\d{2,3}|\(\d{2,3}\))?[ ]?\d{3,4}[-]?\d{3,4}$/),
+    email String maxlength(70) minlength(5) pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/),
     logradouroNome String minlength(5) maxlength(70),
     logradouroNumero String maxlength(5),
     logradouroComplemento String maxlength(50),
     bairro String minlength(DEFAULT_MIN_LENGTH) maxlength(30),
-	cep String maxlength(8),
+	cep String pattern(/^[0-9]{5}-[0-9]{3}$/),
 	cidade String minlength(DEFAULT_MIN_LENGTH) maxlength(30),
 	estado Estado,
-	parentescoResponsavel1 TipoResponsavel,
-	parentescoResponsavel2 TipoResponsavel,
+	parentescoResponsavel TipoParentesco,
+	parentescoResponsavelFinanceiro TipoParentesco,
     dataHoraCadastro Instant required,
     ativo Boolean,
-    observacao String maxlength(255)
-}
-
-relationship OneToMany {
-    Paciente{planejamentoEstrategico} to PlanejamentoEstrategico{paciente}
+    observacao String maxlength(255),
+    detalhamento TextBlob
 }
 
 relationship ManyToOne {
-    PlanejamentoEstrategico{user(login)} to User
-}
-
-relationship ManyToMany {
-  Paciente{responsavel1} to Paciente{dependente1}
-  Paciente{responsavel2} to Paciente{dependente2}
+  Cliente{responsavel(nomeCompleto)} to Cliente
+  Cliente{responsavelFinanceiro(nomeCompleto)} to Cliente
 }
 
 
-filter Paciente
-paginate Paciente with pagination
-service Paciente with serviceClass
+filter Cliente
+paginate Cliente with pagination
+service Cliente with serviceClass
 
 
 #No services specified will create a resource class which will call the repository interface directly. This is the default and simplest option
@@ -155,6 +154,10 @@ service Paciente with serviceClass
 #relationship OneToOne {
 #  A{b(name)} to B{a(name)}
 #}
-
+// Validations
+# name String pattern(/^[A-Z][a-z]+\d$/)
+#String	String	required, minlength, maxlength, pattern, unique
+#Integer	Integer	required, min, max, unique
+#Blob		required, minbytes, maxbytes, unique
 // With required sides: Used to make at least one relationship side required.
 // https://www.jhipster.tech/jdl/relationships#syntax

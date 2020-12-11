@@ -1,0 +1,52 @@
+{
+  "clinicaAdaptrojhApp": {
+    "funcionario": {
+      "home": {
+        "title": "Funcionarios",
+        "createLabel": "Criar novo Funcionario",
+        "createOrEditLabel": "Criar ou editar Funcionario",
+        "notFound": "Nenhum Funcionario encontrado"
+      },
+      "created": "Um novo Funcionario foi criado com o identificador {{ param }}",
+      "updated": "Um Funcionario foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Funcionario foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Funcionario {{ id }}?"
+      },
+      "detail": {
+        "title": "Funcionario"
+      },
+      "nomeCompleto": "Nome Completo",
+      "foto": "Foto",
+      "dataNascimento": "Data Nascimento",
+      "numeroConselhoProfissional": "Numero Conselho Profissional",
+      "cpf": "Cpf",
+      "rg": "Rg",
+      "cnh": "Cnh",
+      "telefone1": "Telefone 1",
+      "telefone2": "Telefone 2",
+      "email": "Email",
+      "dataAdmissao": "Data Admissao",
+      "dataDesligamento": "Data Desligamento",
+      "salario": "Salario",
+      "sexo": "Sexo",
+      "estadoCivil": "Estado Civil",
+      "escolaridade": "Escolaridade",
+      "funcao": "Funcao",
+      "descOutraFuncao": "Desc Outra Funcao",
+      "logradouroNome": "Logradouro Nome",
+      "logradouroNumero": "Logradouro Numero",
+      "logradouroComplemento": "Logradouro Complemento",
+      "bairro": "Bairro",
+      "proximidadesLogradouro": "Proximidades Logradouro",
+      "cep": "Cep",
+      "cidade": "Cidade",
+      "estado": "Estado",
+      "dataHoraCadastro": "Data Hora Cadastro",
+      "observacao": "Observacao",
+      "curriculo": "Curriculo",
+      "user": "User",
+      "especialidadeSaude": "Especialidade Saude"
+    }
+  }
+}

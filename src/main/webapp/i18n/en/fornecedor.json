@@ -1,0 +1,38 @@
+{
+  "clinicaAdaptrojhApp": {
+    "fornecedor": {
+      "home": {
+        "title": "Fornecedors",
+        "createLabel": "Create a new Fornecedor",
+        "createOrEditLabel": "Create or edit a Fornecedor",
+        "notFound": "No Fornecedors found"
+      },
+      "created": "A new Fornecedor is created with identifier {{ param }}",
+      "updated": "A Fornecedor is updated with identifier {{ param }}",
+      "deleted": "A Fornecedor is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Fornecedor {{ id }}?"
+      },
+      "detail": {
+        "title": "Fornecedor"
+      },
+      "tipoPessoa": "Tipo Pessoa",
+      "numeroCPF": "Numero CPF",
+      "numeroCNPJ": "Numero CNPJ",
+      "numeroInscricaoEstadual": "Numero Inscricao Estadual",
+      "nome": "Nome",
+      "nomeFantasia": "Nome Fantasia",
+      "email": "Email",
+      "telefone1": "Telefone 1",
+      "telefone2": "Telefone 2",
+      "logradouroNome": "Logradouro Nome",
+      "logradouroNumero": "Logradouro Numero",
+      "logradouroComplemento": "Logradouro Complemento",
+      "bairro": "Bairro",
+      "cep": "Cep",
+      "cidade": "Cidade",
+      "estado": "Estado",
+      "observacao": "Observacao"
+    }
+  }
+}

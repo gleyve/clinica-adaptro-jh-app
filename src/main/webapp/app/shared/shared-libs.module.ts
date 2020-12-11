@@ -6,6 +6,8 @@ import { NgJhipsterModule } from 'ng-jhipster';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TranslateModule } from '@ngx-translate/core';
+import { TextMaskModule } from 'angular2-text-mask';
+import { NgBrazil } from 'ng-brazil';
 
 @NgModule({
   exports: [
@@ -17,6 +19,8 @@ import { TranslateModule } from '@ngx-translate/core';
     FontAwesomeModule,
     ReactiveFormsModule,
     TranslateModule,
+    TextMaskModule,
+    NgBrazil,
   ],
 })
 export class ClinicaAdaptrojhAppSharedLibsModule {}

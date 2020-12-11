@@ -1,0 +1,206 @@
+DEFAULT_MIN_LENGTH = 3
+DEFAULT_MAX_LENGTH = 100
+CPF_MAX_LENGTH = 11
+CNPJ_MAX_LENGTH = 15
+FONE_MAX_LENGTH = 15
+CEP_MAX_LENGTH = 8
+
+entity Cliente {
+  tipoCliente TipoCliente required,
+  matricula String unique minlength(6) maxlength(6),
+  nomeCompleto String required maxlength(100),
+  foto ImageBlob maxbytes(2024),
+  dataNascimento LocalDate,
+  sexo Sexo required,
+  estadoCivil EstadoCivil,
+  escolaridade Escolaridade,
+  convenio Convenio required,
+  numCarteirinhaConvenio String unique maxlength(20),
+  dataValidadeConvenio LocalDate,
+  procedencia Procedencia,
+  profissao String minlength(2) maxlength(70),
+  cpf String unique maxlength(CPF_MAX_LENGTH) pattern(/(\d{3})(\d{3})(\d{3})(\d{2})/),
+  rg String unique maxlength(15),
+  telefone1 String maxlength(FONE_MAX_LENGTH) pattern(/^(\d{2,3}|\(\d{2,3}\))?[ ]?\d{3,4}[-]?\d{3,4}$/),
+  telefone2 String maxlength(FONE_MAX_LENGTH) pattern(/^(\d{2,3}|\(\d{2,3}\))?[ ]?\d{3,4}[-]?\d{3,4}$/),
+  email String maxlength(120) pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/),
+  logradouroNome String minlength(2) maxlength(70),
+  logradouroNumero String maxlength(5),
+  logradouroComplemento String maxlength(50),
+  bairro String minlength(2) maxlength(30),
+  cep String maxlength(CEP_MAX_LENGTH) pattern(/^[0-9]{5}[0-9]{3}$/),
+  cidade String minlength(2) maxlength(30),
+  estado Estado,
+  parentescoResponsavel TipoParentesco,
+  parentescoResponsavelFinanceiro TipoParentesco,
+  dataHoraCadastro Instant required,
+  ativo Boolean,
+  observacao String maxlength(1000)
+}
+entity EspecialidadeSaude {
+  descricao String required unique minlength(3) maxlength(70),
+  sigla String required unique minlength(2) maxlength(10),
+  ativo Boolean
+}
+entity Fornecedor {
+  tipoPessoa TipoPessoa required,
+  numeroCPF String unique maxlength(CPF_MAX_LENGTH) pattern(/(\d{3})(\d{3})(\d{3})(\d{2})/),
+  numeroCNPJ String unique maxlength(CNPJ_MAX_LENGTH) pattern(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/),
+  numeroInscricaoEstadual String unique maxlength(9),
+  nome String required minlength(3) maxlength(DEFAULT_MAX_LENGTH),
+  nomeFantasia String maxlength(DEFAULT_MAX_LENGTH),
+  email String maxlength(120) pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/),
+  telefone1 String maxlength(FONE_MAX_LENGTH) pattern(/^(\d{2,3}|\(\d{2,3}\))?[ ]?\d{3,4}[-]?\d{3,4}$/),
+  telefone2 String maxlength(FONE_MAX_LENGTH) pattern(/^(\d{2,3}|\(\d{2,3}\))?[ ]?\d{3,4}[-]?\d{3,4}$/),
+  logradouroNome String minlength(2) maxlength(70),
+  logradouroNumero String maxlength(4),
+  logradouroComplemento String maxlength(50),
+  bairro String minlength(2) maxlength(30),
+  cep String maxlength(CEP_MAX_LENGTH) pattern(/^[0-9]{5}[0-9]{3}$/),
+  cidade String minlength(2) maxlength(30),
+  estado Estado,
+  observacao String maxlength(1000)
+}
+entity Funcionario {
+  nomeCompleto String required maxlength(100),
+  foto ImageBlob,
+  dataNascimento LocalDate,
+  numeroConselhoProfissional String maxlength(20),
+  cpf String unique maxlength(CPF_MAX_LENGTH) pattern(/(\d{3})(\d{3})(\d{3})(\d{2})/),
+  rg String maxlength(15),
+  cnh String maxlength(15),
+  telefone1 String maxlength(FONE_MAX_LENGTH) pattern(/^(\d{2,3}|\(\d{2,3}\))?[ ]?\d{3,4}[-]?\d{3,4}$/),
+  telefone2 String maxlength(FONE_MAX_LENGTH) pattern(/^(\d{2,3}|\(\d{2,3}\))?[ ]?\d{3,4}[-]?\d{3,4}$/),
+  email String maxlength(120) pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/),
+  dataAdmissao LocalDate,
+  dataDesligamento LocalDate,
+  salario Long,
+  sexo Sexo required,
+  estadoCivil EstadoCivil,
+  escolaridade Escolaridade,
+  funcao CategoriaFuncionario required,
+  descOutraFuncao String maxlength(40),
+  logradouroNome String minlength(2) maxlength(70),
+  logradouroNumero String maxlength(5),
+  logradouroComplemento String maxlength(50),
+  bairro String minlength(2) maxlength(30),
+  proximidadesLogradouro String maxlength(50),
+  cep String maxlength(CEP_MAX_LENGTH) pattern(/^[0-9]{5}[0-9]{3}$/),
+  cidade String minlength(2) maxlength(30),
+  estado Estado,
+  dataHoraCadastro Instant required,
+  observacao String maxlength(1000),
+  curriculo AnyBlob
+}
+entity PlanoEstrategico {
+  dataInicio LocalDate,
+  dataFim LocalDate,
+  detalhamento String required maxlength(1000),
+  dataHoraCadastro Instant required
+}
+enum TipoCliente {
+  PACIENTE ("Paciente"),
+  OUTRO ("Responsável por paciente ou Outros")
+}
+enum Sexo {
+  M ("Masculino"),
+  F ("Feminino")
+}
+enum EstadoCivil {
+  SOLTEIRO ("Solteiro"),
+  CASADO ("Casado"),
+  SEPARADO ("Separado"),
+  DIVORCIADO ("Divorciado"),
+  VIUVO ("Viúvo"),
+  UNIAO_ESTAVEL ("União Estável"),
+  OUTRO ("Outro")
+}
+enum Escolaridade {
+  EFC ("Ensino Fundamental Completo"),
+  EFI ("Ensino Fundamental Incompleto"),
+  ESC ("Ensino Superior Completo"),
+  ESI ("Ensino Superior Incompleto"),
+  PGC ("Pós-Graduação Completo"),
+  PGI ("Pós-Graduação Incompleto"),
+  MES ("Mestrado"),
+  DOU ("Doutorado")
+}
+enum Convenio {
+  UNIMED_CE ("UNIMED Ceará"),
+  OUTRO ("Outro")
+}
+enum Procedencia {
+  ENCAMINHAMENTO_MEDICO ("Encaminhamento Médico"),
+  INDICACAO_PACIENTE ("Indicação de Paciente"),
+  INDICACAO_MEDICO ("Parente de um Paciente"),
+  INTERNET ("Conheceu pela Internet"),
+  OUTRO ("Outro")
+}
+enum Estado {
+	AC("Acre"),
+	AL("Alagoas"),
+	AM("Amazonas"),
+	AP("Amapá"),
+	BA("Bahia"),
+	CE("Ceará"),
+	DF("Distrito Federal"),
+	ES("Espírito Santo"),
+	GO("Goiás"),
+	MA("Maranhão"),
+	MG("Minas Gerais"),
+	MS("Mato Grosso do Sul"),
+	MT("Mato Grosso"),
+	PA("Pará"),
+	PB("Paraíba"),
+	PE("Pernambuco"),
+	PI("Piauí"),
+	PR("Paraná"),
+	RJ("Rio de Janeiro"),
+	RN("Rio Grande do Norte"),
+	RO("Rondônia"),
+	RR("Roraima"),
+	RS("Rio Grande do Sul"),
+	SC("Santa Catarina"),
+	SE("Sergipe"),
+	SP("São Paulo"),
+	TO("Tocantins")
+}
+enum TipoParentesco {
+  PAI ("Pai"),
+  MAE ("Mãe"),
+  AVO ("Avô(ó)"),
+  TIO ("Tio(a)"),
+  AMIGO ("Amigo(a)"),
+  CONJUGE ("Esposo(a)"),
+  OUTURO ("Outro")
+}
+enum TipoPessoa {
+  F ("Pessoa Física (CPF)"),
+  J ("Pessoa Jurídica (CNPJ)")
+}
+enum CategoriaFuncionario {
+  PROFISSIONAL_SAUDE ("Profissional da Saúde"),
+  RECEPCAO ("Recepcionista"),
+  ADMIN ("Administrador"),
+  ESTAGIARIO ("Estagiário"),
+  OUTRO ("Outro")
+}
+
+relationship OneToOne {
+  Funcionario{user(login)} to User
+}
+relationship OneToMany {
+  Cliente{planoEstrategico} to PlanoEstrategico{cliente(nomeCompleto) required}
+}
+
+relationship ManyToOne {
+  Cliente{responsavel(nomeCompleto)} to Cliente,
+  Cliente{responsavelFinanceiro(nomeCompleto)} to Cliente,
+  Funcionario{especialidadeSaude(descricao)} to EspecialidadeSaude,
+  PlanoEstrategico{user(login)} to User
+}
+
+paginate Cliente, Fornecedor, Funcionario with pagination
+paginate EspecialidadeSaude, PlanoEstrategico with infinite-scroll
+service Cliente, Funcionario with serviceClass
+filter Cliente, Fornecedor, Funcionario

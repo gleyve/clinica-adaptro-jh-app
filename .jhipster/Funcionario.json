@@ -1,0 +1,251 @@
+{
+  "name": "Funcionario",
+  "fields": [
+    {
+      "fieldName": "nomeCompleto",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required",
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "foto",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "dataNascimento",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "numeroConselhoProfissional",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "20"
+    },
+    {
+      "fieldName": "cpf",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "unique",
+        "maxlength",
+        "pattern"
+      ],
+      "fieldValidateRulesMaxlength": "11",
+      "fieldValidateRulesPattern": "(\\d{3})(\\d{3})(\\d{3})(\\d{2})"
+    },
+    {
+      "fieldName": "rg",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "15"
+    },
+    {
+      "fieldName": "cnh",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "15"
+    },
+    {
+      "fieldName": "telefone1",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength",
+        "pattern"
+      ],
+      "fieldValidateRulesMaxlength": "15",
+      "fieldValidateRulesPattern": "^(\\d{2,3}|\\(\\d{2,3}\\))?[ ]?\\d{3,4}[-]?\\d{3,4}$"
+    },
+    {
+      "fieldName": "telefone2",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength",
+        "pattern"
+      ],
+      "fieldValidateRulesMaxlength": "15",
+      "fieldValidateRulesPattern": "^(\\d{2,3}|\\(\\d{2,3}\\))?[ ]?\\d{3,4}[-]?\\d{3,4}$"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength",
+        "pattern"
+      ],
+      "fieldValidateRulesMaxlength": "120",
+      "fieldValidateRulesPattern": "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$"
+    },
+    {
+      "fieldName": "dataAdmissao",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dataDesligamento",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "salario",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "sexo",
+      "fieldType": "Sexo",
+      "fieldValues": "M (Masculino),F (Feminino)",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "estadoCivil",
+      "fieldType": "EstadoCivil",
+      "fieldValues": "SOLTEIRO (Solteiro),CASADO (Casado),SEPARADO (Separado),DIVORCIADO (Divorciado),VIUVO (Viúvo),UNIAO_ESTAVEL (União Estável),OUTRO (Outro)"
+    },
+    {
+      "fieldName": "escolaridade",
+      "fieldType": "Escolaridade",
+      "fieldValues": "EFC (Ensino Fundamental Completo),EFI (Ensino Fundamental Incompleto),ESC (Ensino Superior Completo),ESI (Ensino Superior Incompleto),PGC (Pós-Graduação Completo),PGI (Pós-Graduação Incompleto),MES (Mestrado),DOU (Doutorado)"
+    },
+    {
+      "fieldName": "funcao",
+      "fieldType": "CategoriaFuncionario",
+      "fieldValues": "PROFISSIONAL_SAUDE (Profissional da Saúde),RECEPCAO (Recepcionista),ADMIN (Administrador),ESTAGIARIO (Estagiário),OUTRO (Outro)",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "descOutraFuncao",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "40"
+    },
+    {
+      "fieldName": "logradouroNome",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "minlength",
+        "maxlength"
+      ],
+      "fieldValidateRulesMinlength": "2",
+      "fieldValidateRulesMaxlength": "70"
+    },
+    {
+      "fieldName": "logradouroNumero",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "5"
+    },
+    {
+      "fieldName": "logradouroComplemento",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "bairro",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "minlength",
+        "maxlength"
+      ],
+      "fieldValidateRulesMinlength": "2",
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "proximidadesLogradouro",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "cep",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength",
+        "pattern"
+      ],
+      "fieldValidateRulesMaxlength": "9",
+      "fieldValidateRulesPattern": "^[0-9]{5}-[0-9]{3}$"
+    },
+    {
+      "fieldName": "cidade",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "minlength",
+        "maxlength"
+      ],
+      "fieldValidateRulesMinlength": "2",
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "estado",
+      "fieldType": "Estado",
+      "fieldValues": "AC (Acre),AL (Alagoas),AM (Amazonas),AP (Amapá),BA (Bahia),CE (Ceará),DF (Distrito Federal),ES (Espírito Santo),GO (Goiás),MA (Maranhão),MG (Minas Gerais),MS (Mato Grosso do Sul),MT (Mato Grosso),PA (Pará),PB (Paraíba),PE (Pernambuco),PI (Piauí),PR (Paraná),RJ (Rio de Janeiro),RN (Rio Grande do Norte),RO (Rondônia),RR (Roraima),RS (Rio Grande do Sul),SC (Santa Catarina),SE (Sergipe),SP (São Paulo),TO (Tocantins)"
+    },
+    {
+      "fieldName": "dataHoraCadastro",
+      "fieldType": "Instant",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "observacao",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "1000"
+    },
+    {
+      "fieldName": "curriculo",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "funcionario",
+      "relationshipName": "user",
+      "otherEntityField": "login",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "especialidadeSaude",
+      "otherEntityRelationshipName": "funcionario",
+      "relationshipName": "especialidadeSaude",
+      "otherEntityField": "descricao"
+    }
+  ],
+  "changelogDate": "20201208074834",
+  "entityTableName": "funcionario",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

@@ -1,15 +1,12 @@
-DEFAULT_MIN_LENGTH = 4
+DEFAULT_MIN_LENGTH = 2
 DEFAULT_MAX_LENGTH = 100
 
-entity User{}
-
-
 enum CategoriaFuncionario{
-	PRF("Profissional de Saúde"),
-    REC("Recepcionista"),
-    ADM("Admin"),
-    EST("Estagiário"),
-    OUT("Outro")
+	PROFISSIONAL_SAUDE("Profissional de Saúde"),
+    RECEPCAO("Recepcionista"),
+    ADMIN("Admin"),
+    ESTAGIARIO("Estagiário"),
+    OUTRO("Outro")
 }
 
 enum EstadoCivil{
@@ -68,39 +65,44 @@ enum Estado {
 	TO("Tocantins")
 }
 
-entity Especialidade{
-	descricao String required minlength(4) maxlength(70),
-	sigla String required minlength(2) maxlength(10)
+@skipClient
+@skipServer
+entity EspecialidadeSaude {
+  descricao String required unique minlength(3) maxlength(70),
+  sigla String required unique minlength(2) maxlength(10),
+  ativo Boolean
 }
 
 entity Funcionario{
 	nomeCompleto String required maxlength(DEFAULT_MAX_LENGTH),
     foto ImageBlob,
     dataNascimento LocalDate required,
+    numeroConselhoProfissional String maxlength(20),
+    cpf String pattern (/(\d{3})(\d{3})(\d{3})(\d{2})/),
+    rg String maxlength(15),
+    cnh String maxlength(15),
+    celular String required pattern(/^(\d{2,3}|\(\d{2,3}\))?[ ]?\d{3,4}[-]?\d{3,4}$/),
+	telefone String pattern(/^(\d{2,3}|\(\d{2,3}\))?[ ]?\d{3,4}[-]?\d{3,4}$/),
+    email String maxlength(70) minlength(5) pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/),
+    dataAdmissao LocalDate,
+    dataDesligamento LocalDate,
+    salario BigDecimal,
     sexo Sexo required,
-    estadoCivil EstadoCivil required,
+    estadoCivil EstadoCivil,
     escolaridade Escolaridade,
     funcao CategoriaFuncionario required,
     descOutraFuncao String required maxlength(40),
-    dataAdmissao LocalDate,
-    dataDesligamento LocalDate,
-    numeroConselho String maxlength(20),
-    cpf String minlength(11) maxlength(11),
-    rg String required maxlength(15),
-    cnh String maxlength(15),
-    celular String required minlength(11) maxlength(15)
-	telefone String minlength(11) maxlength(15),
-    email String maxlength(50) minlength(5) pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/),
     logradouroNome String minlength(5) maxlength(70),
     logradouroNumero String maxlength(5),
     logradouroComplemento String maxlength(50),
     bairro String minlength(DEFAULT_MIN_LENGTH) maxlength(30),
-    proximidades String maxlength(50),
-	cep String minlength(8) maxlength(8),
+    proximidadesLogradouro String maxlength(50),
+	cep String pattern(/^[0-9]{5}-[0-9]{3}$/),
 	cidade String minlength(DEFAULT_MIN_LENGTH) maxlength(30),
 	estado Estado,
     dataHoraCadastro Instant required,
-    observacao String maxlength(255)
+    observacao String maxlength(255),
+    curriculo AnyBlob
 }
 
 
@@ -109,9 +111,12 @@ relationship OneToOne {
 }
 
 relationship ManyToOne {
-	Funcionario{especialidadeSaude(descricao)} to Especialidade
+	Funcionario{especialidadeSaude(descricao)} to EspecialidadeSaude
 }
 
 filter Funcionario
 paginate Funcionario with pagination
-service all with serviceImpl
+service all with serviceClass
+
+skipClient * except Funcionario // This will make the client code generation to be skipped
+skipServer * except Funcionario // This will make the server code generation to be skipped
