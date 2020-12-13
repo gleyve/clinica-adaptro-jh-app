@@ -1,17 +1,17 @@
 {
   "global": {
-    "title": "ClinicaADAPTROJHApp",
+    "title": "Clínica ADAPTRO",
     "browsehappy": "Você está usando um navegador <strong>desatualizado</strong>. Favor <a href=\"http://browsehappy.com/?locale=pt_BR\">atualize o seu navegador</a> para ter uma experiência melhor.",
     "menu": {
       "home": "Início",
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
-        "main": "Entidades",
+        "main": "Cadastros",
         "fornecedor": "Fornecedor",
-        "cliente": "Cliente",
-        "planoEstrategico": "Plano Estrategico",
-        "especialidadeSaude": "Especialidade Saude",
-        "funcionario": "Funcionario",
+        "cliente": "Paciente/Cliente",
+        "planoEstrategico": "Plano Estratégico",
+        "especialidadeSaude": "Especialidade Saúde",
+        "funcionario": "Funcionário",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
@@ -86,7 +86,7 @@
       }
     },
     "field": {
-      "id": "Código"
+      "id": "ID"
     },
     "ribbon": {
       "dev": "Desenvolvimento"
@@ -103,7 +103,10 @@
       "edit": "Editar",
       "open": "Abrir",
       "save": "Salvar",
-      "view": "Visualizar"
+      "view": "Ver",
+      "search": "Consultar",
+      "clearSearch": "Limpar",
+      "searchPlaceholder": "Digite aqui o texto de busca"
     },
     "detail": {
       "field": "Campo",

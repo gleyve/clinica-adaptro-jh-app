@@ -103,7 +103,10 @@
       "edit": "Edit",
       "open": "Open",
       "save": "Save",
-      "view": "View"
+      "view": "View",
+      "clearSearch": "Clear Search",
+      "search": "Search",
+      "searchPlaceholder": "Type here your search keyword"
     },
     "detail": {
       "field": "Field",

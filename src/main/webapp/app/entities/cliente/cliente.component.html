@@ -24,88 +24,30 @@
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
                     <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="tipoCliente"><span jhiTranslate="clinicaAdaptrojhApp.cliente.tipoCliente">Tipo Cliente</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="matricula"><span jhiTranslate="clinicaAdaptrojhApp.cliente.matricula">Matricula</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="nomeCompleto"><span jhiTranslate="clinicaAdaptrojhApp.cliente.nomeCompleto">Nome Completo</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="foto"><span jhiTranslate="clinicaAdaptrojhApp.cliente.foto">Foto</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="dataNascimento"><span jhiTranslate="clinicaAdaptrojhApp.cliente.dataNascimento">Data Nascimento</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="sexo"><span jhiTranslate="clinicaAdaptrojhApp.cliente.sexo">Sexo</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="estadoCivil"><span jhiTranslate="clinicaAdaptrojhApp.cliente.estadoCivil">Estado Civil</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="escolaridade"><span jhiTranslate="clinicaAdaptrojhApp.cliente.escolaridade">Escolaridade</span> <fa-icon icon="sort"></fa-icon></th>
+
                     <th scope="col"  jhiSortBy="convenio"><span jhiTranslate="clinicaAdaptrojhApp.cliente.convenio">Convenio</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="numCarteirinhaConvenio"><span jhiTranslate="clinicaAdaptrojhApp.cliente.numCarteirinhaConvenio">Num Carteirinha Convenio</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="dataValidadeConvenio"><span jhiTranslate="clinicaAdaptrojhApp.cliente.dataValidadeConvenio">Data Validade Convenio</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="procedencia"><span jhiTranslate="clinicaAdaptrojhApp.cliente.procedencia">Procedencia</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="profissao"><span jhiTranslate="clinicaAdaptrojhApp.cliente.profissao">Profissao</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="cpf"><span jhiTranslate="clinicaAdaptrojhApp.cliente.cpf">Cpf</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="rg"><span jhiTranslate="clinicaAdaptrojhApp.cliente.rg">Rg</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="telefone1"><span jhiTranslate="clinicaAdaptrojhApp.cliente.telefone1">Telefone 1</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="telefone2"><span jhiTranslate="clinicaAdaptrojhApp.cliente.telefone2">Telefone 2</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="email"><span jhiTranslate="clinicaAdaptrojhApp.cliente.email">Email</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="logradouroNome"><span jhiTranslate="clinicaAdaptrojhApp.cliente.logradouroNome">Logradouro Nome</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="logradouroNumero"><span jhiTranslate="clinicaAdaptrojhApp.cliente.logradouroNumero">Logradouro Numero</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="logradouroComplemento"><span jhiTranslate="clinicaAdaptrojhApp.cliente.logradouroComplemento">Logradouro Complemento</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="bairro"><span jhiTranslate="clinicaAdaptrojhApp.cliente.bairro">Bairro</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="cep"><span jhiTranslate="clinicaAdaptrojhApp.cliente.cep">Cep</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="cidade"><span jhiTranslate="clinicaAdaptrojhApp.cliente.cidade">Cidade</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="estado"><span jhiTranslate="clinicaAdaptrojhApp.cliente.estado">Estado</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="parentescoResponsavel"><span jhiTranslate="clinicaAdaptrojhApp.cliente.parentescoResponsavel">Parentesco Responsavel</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="parentescoResponsavelFinanceiro"><span jhiTranslate="clinicaAdaptrojhApp.cliente.parentescoResponsavelFinanceiro">Parentesco Responsavel Financeiro</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="dataHoraCadastro"><span jhiTranslate="clinicaAdaptrojhApp.cliente.dataHoraCadastro">Data Hora Cadastro</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="ativo"><span jhiTranslate="clinicaAdaptrojhApp.cliente.ativo">Ativo</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="observacao"><span jhiTranslate="clinicaAdaptrojhApp.cliente.observacao">Observacao</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="responsavel.nomeCompleto"><span jhiTranslate="clinicaAdaptrojhApp.cliente.responsavel">Responsavel</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="responsavelFinanceiro.nomeCompleto"><span jhiTranslate="clinicaAdaptrojhApp.cliente.responsavelFinanceiro">Responsavel Financeiro</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
+
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let cliente of clientes ;trackBy: trackId">
                     <td><a [routerLink]="['/cliente', cliente.id, 'view']">{{ cliente.id }}</a></td>
                     <td jhiTranslate="{{ 'clinicaAdaptrojhApp.TipoCliente.' + cliente.tipoCliente }}">{{ cliente.tipoCliente }}</td>
-                    <td>{{ cliente.matricula }}</td>
                     <td>{{ cliente.nomeCompleto }}</td>
                     <td>
                         <a *ngIf="cliente.foto" (click)="openFile(cliente.fotoContentType, cliente.foto)">
                             <img [src]="'data:' + cliente.fotoContentType + ';base64,' + cliente.foto" style="max-height: 30px;" alt="cliente image"/>
                         </a>
-                        <span *ngIf="cliente.foto">{{ cliente.fotoContentType }}, {{ byteSize(cliente.foto) }}</span>
                     </td>
-                    <td>{{ cliente.dataNascimento | date:'mediumDate' }}</td>
-                    <td jhiTranslate="{{ 'clinicaAdaptrojhApp.Sexo.' + cliente.sexo }}">{{ cliente.sexo }}</td>
-                    <td jhiTranslate="{{ 'clinicaAdaptrojhApp.EstadoCivil.' + cliente.estadoCivil }}">{{ cliente.estadoCivil }}</td>
-                    <td jhiTranslate="{{ 'clinicaAdaptrojhApp.Escolaridade.' + cliente.escolaridade }}">{{ cliente.escolaridade }}</td>
                     <td jhiTranslate="{{ 'clinicaAdaptrojhApp.Convenio.' + cliente.convenio }}">{{ cliente.convenio }}</td>
-                    <td>{{ cliente.numCarteirinhaConvenio }}</td>
-                    <td>{{ cliente.dataValidadeConvenio | date:'mediumDate' }}</td>
-                    <td jhiTranslate="{{ 'clinicaAdaptrojhApp.Procedencia.' + cliente.procedencia }}">{{ cliente.procedencia }}</td>
-                    <td>{{ cliente.profissao }}</td>
-                    <td>{{ cliente.cpf }}</td>
-                    <td>{{ cliente.rg }}</td>
                     <td>{{ cliente.telefone1 }}</td>
-                    <td>{{ cliente.telefone2 }}</td>
                     <td>{{ cliente.email }}</td>
-                    <td>{{ cliente.logradouroNome }}</td>
-                    <td>{{ cliente.logradouroNumero }}</td>
-                    <td>{{ cliente.logradouroComplemento }}</td>
-                    <td>{{ cliente.bairro }}</td>
-                    <td>{{ cliente.cep }}</td>
-                    <td>{{ cliente.cidade }}</td>
-                    <td jhiTranslate="{{ 'clinicaAdaptrojhApp.Estado.' + cliente.estado }}">{{ cliente.estado }}</td>
-                    <td jhiTranslate="{{ 'clinicaAdaptrojhApp.TipoParentesco.' + cliente.parentescoResponsavel }}">{{ cliente.parentescoResponsavel }}</td>
-                    <td jhiTranslate="{{ 'clinicaAdaptrojhApp.TipoParentesco.' + cliente.parentescoResponsavelFinanceiro }}">{{ cliente.parentescoResponsavelFinanceiro }}</td>
-                    <td>{{ cliente.dataHoraCadastro | date:'medium' }}</td>
-                    <td>{{ cliente.ativo }}</td>
-                    <td>{{ cliente.observacao }}</td>
-                    <td>
-                        <div *ngIf="cliente.responsavel">
-                            <a [routerLink]="['/cliente', cliente.responsavel?.id, 'view']" >{{ cliente.responsavel?.nomeCompleto }}</a>
-                        </div>
-                    </td>
-                    <td>
-                        <div *ngIf="cliente.responsavelFinanceiro">
-                            <a [routerLink]="['/cliente', cliente.responsavelFinanceiro?.id, 'view']" >{{ cliente.responsavelFinanceiro?.nomeCompleto }}</a>
-                        </div>
-                    </td>
+
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"
@@ -129,6 +71,9 @@
                             </button>
                         </div>
                     </td>
+
+
+
                 </tr>
             </tbody>
         </table>

@@ -100,7 +100,8 @@ entity PlanoEstrategico {
 }
 enum TipoCliente {
   PACIENTE ("Paciente"),
-  OUTRO ("Responsável por paciente ou Outros")
+  RESP ("Responsável por paciente"),
+  OUTRO ("Outros")
 }
 enum Sexo {
   M ("Masculino"),
@@ -175,8 +176,8 @@ enum TipoParentesco {
   OUTURO ("Outro")
 }
 enum TipoPessoa {
-  F ("Pessoa Física (CPF)"),
-  J ("Pessoa Jurídica (CNPJ)")
+  F ("PF"),
+  J ("PJ")
 }
 enum CategoriaFuncionario {
   PROFISSIONAL_SAUDE ("Profissional da Saúde"),

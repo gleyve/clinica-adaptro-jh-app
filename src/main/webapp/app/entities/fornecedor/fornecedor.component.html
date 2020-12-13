@@ -1,6 +1,57 @@
 <div>
+
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+
+  
+    <!-- Início formulário de busca -->
+        <div class="row">
+            <div class="col-sm-6">
+                <form class="form-inline" name="searchForm" novalidate [formGroup]="searchForm" (ngSubmit)="search()">
+                    <!-- Search Radio Fields -->
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" formControlName="searchParamRadio" name="searchParamRadio" id="searchParamRadio" value="nome" checked>
+                        <label class="form-check-label" for="inlineRadio1">Nome/Razão Social</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" formControlName="searchParamRadio" name="searchParamRadio" id="searchParamRadio" value="fantasia">
+                        <label class="form-check-label" for="inlineRadio1">Nome Fantasia</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" formControlName="searchParamRadio" name="searchParamRadio" id="cpf" value="cpf">
+                        <label class="form-check-label" for="inlineRadio2">CPF</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" formControlName="searchParamRadio" name="searchParamRadio" id="cnpj" value="cnpj">
+                        <label class="form-check-label" for="inlineRadio2">CNPJ</label>
+                    </div>
+<!--                     <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" formControlName="searchParamCheckAtivo" name="searchParamCheckAtivo" id="inlinecheckbox1" value="ATIVO" checked>
+                        <label class="form-check-label" for="inlineRadio3">Ativo</label>
+                    </div> -->
+                    <!-- currentSearch Input Text Fields -->
+                    <div class="input-group w-100 mt-3">
+                        <input type="text" class="form-control mr-2" required formControlName="valorBusca" id="valorBusca" name="valorBusca" maxlength="60" placeholder="{{ 'entity.action.searchPlaceholder' | translate }}">
+                        <button type="submit" class="input-group-append btn btn-info mr-2" >
+                            <fa-icon icon="search"></fa-icon>
+                        </button>
+
+                        <button class="btn btn-info mr-2" type="button" (click)="onClear()" jhiTranslate="entity.action.clearSearch" >
+                            <fa-icon icon="eraser"></fa-icon>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    <br>
+    <br>
+
     <h2 id="page-heading">
-        <span jhiTranslate="clinicaAdaptrojhApp.fornecedor.home.title">Fornecedors</span>
+        Lista de <span jhiTranslate="clinicaAdaptrojhApp.fornecedor.home.title">Fornecedors</span>
 
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-fornecedor" [routerLink]="['/fornecedor/new']">
             <fa-icon icon="plus"></fa-icon>
@@ -9,10 +60,6 @@
             </span>
         </button>
     </h2>
-
-    <jhi-alert-error></jhi-alert-error>
-
-    <jhi-alert></jhi-alert>
 
     <div class="alert alert-warning" id="no-result" *ngIf="fornecedors?.length === 0">
         <span jhiTranslate="clinicaAdaptrojhApp.fornecedor.home.notFound">No fornecedors found</span>
@@ -24,22 +71,11 @@
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
                     <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="tipoPessoa"><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.tipoPessoa">Tipo Pessoa</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="numeroCPF"><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.numeroCPF">Numero CPF</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="numeroCNPJ"><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.numeroCNPJ">Numero CNPJ</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="numeroInscricaoEstadual"><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.numeroInscricaoEstadual">Numero Inscricao Estadual</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="nome"><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.nome">Nome</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="nomeFantasia"><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.nomeFantasia">Nome Fantasia</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="email"><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.email">Email</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="telefone1"><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.telefone1">Telefone 1</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="telefone2"><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.telefone2">Telefone 2</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="logradouroNome"><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.logradouroNome">Logradouro Nome</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="logradouroNumero"><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.logradouroNumero">Logradouro Numero</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="logradouroComplemento"><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.logradouroComplemento">Logradouro Complemento</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="bairro"><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.bairro">Bairro</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="cep"><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.cep">Cep</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="cidade"><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.cidade">Cidade</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="email"><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.email">Email</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="estado"><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.estado">Estado</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="observacao"><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.observacao">Observacao</span> <fa-icon icon="sort"></fa-icon></th>
+
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -47,22 +83,12 @@
                 <tr *ngFor="let fornecedor of fornecedors ;trackBy: trackId">
                     <td><a [routerLink]="['/fornecedor', fornecedor.id, 'view']">{{ fornecedor.id }}</a></td>
                     <td jhiTranslate="{{ 'clinicaAdaptrojhApp.TipoPessoa.' + fornecedor.tipoPessoa }}">{{ fornecedor.tipoPessoa }}</td>
-                    <td>{{ fornecedor.numeroCPF | cpf }}</td>
-                    <td>{{ fornecedor.numeroCNPJ | cnpj }}</td>
-                    <td>{{ fornecedor.numeroInscricaoEstadual }}</td>
-                    <td>{{ fornecedor.nome }}</td>
-                    <td>{{ fornecedor.nomeFantasia }}</td>
-                    <td>{{ fornecedor.email }}</td>
+                    <td *ngIf="fornecedor.tipoPessoa!.toString() === 'F'">{{ fornecedor.nome }}</td>
+                    <td *ngIf="fornecedor.tipoPessoa!.toString() === 'J'">{{ fornecedor.nomeFantasia }}</td>
+
                     <td>{{ fornecedor.telefone1 | telefone }}</td>
-                    <td>{{ fornecedor.telefone2 | telefone }}</td>
-                    <td>{{ fornecedor.logradouroNome }}</td>
-                    <td>{{ fornecedor.logradouroNumero }}</td>
-                    <td>{{ fornecedor.logradouroComplemento }}</td>
-                    <td>{{ fornecedor.bairro }}</td>
-                    <td>{{ fornecedor.cep | cep }}</td>
-                    <td>{{ fornecedor.cidade }}</td>
-                    <td jhiTranslate="{{ 'clinicaAdaptrojhApp.Estado.' + fornecedor.estado }}">{{ fornecedor.estado }}</td>
-                    <td>{{ fornecedor.observacao }}</td>
+                    <td>{{ fornecedor.email }}</td>
+                    <td jhiTranslate="{{ 'clinicaAdaptrojhApp.Estado2.' + fornecedor.estado }}">{{ fornecedor.estado }}</td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"

@@ -57,13 +57,13 @@
             <column name="salario" type="bigint">
                 <constraints nullable="true" />
             </column>
-            <column name="sexo" type="varchar(255)">
+            <column name="sexo" type="varchar(1)">
                 <constraints nullable="false" />
             </column>
-            <column name="estado_civil" type="varchar(255)">
+            <column name="estado_civil" type="varchar(2)">
                 <constraints nullable="true" />
             </column>
-            <column name="escolaridade" type="varchar(255)">
+            <column name="escolaridade" type="varchar(50)">
                 <constraints nullable="true" />
             </column>
             <column name="funcao" type="varchar(255)">
@@ -87,13 +87,13 @@
             <column name="proximidades_logradouro" type="varchar(50)">
                 <constraints nullable="true" />
             </column>
-            <column name="cep" type="varchar(9)">
+            <column name="cep" type="varchar(8)">
                 <constraints nullable="true" />
             </column>
             <column name="cidade" type="varchar(30)">
                 <constraints nullable="true" />
             </column>
-            <column name="estado" type="varchar(255)">
+            <column name="estado" type="varchar(2">
                 <constraints nullable="true" />
             </column>
             <column name="data_hora_cadastro" type="datetime">

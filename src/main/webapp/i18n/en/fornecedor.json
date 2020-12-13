@@ -5,7 +5,8 @@
         "title": "Fornecedors",
         "createLabel": "Create a new Fornecedor",
         "createOrEditLabel": "Create or edit a Fornecedor",
-        "notFound": "No Fornecedors found"
+        "notFound": "No Fornecedors found",
+        "search": "Pesquisar por Fornecedor"
       },
       "created": "A new Fornecedor is created with identifier {{ param }}",
       "updated": "A Fornecedor is updated with identifier {{ param }}",

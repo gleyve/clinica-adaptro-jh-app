@@ -84,7 +84,7 @@
             <column name="bairro" type="varchar(30)">
                 <constraints nullable="true" />
             </column>
-            <column name="cep" type="varchar(9)">
+            <column name="cep" type="varchar(8)">
                 <constraints nullable="true" />
             </column>
             <column name="cidade" type="varchar(30)">

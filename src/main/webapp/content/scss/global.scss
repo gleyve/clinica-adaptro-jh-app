@@ -6,12 +6,30 @@
 /* ==============================================================
 Bootstrap tweaks
 ===============================================================*/
+fieldset {
+  border: 1px solid darkgray;
+  padding: 10px;
+  /* controla a distancia entre os elementos e a borda */
+  margin: 15px;
+  /* margem para alinhar o fieldset com o restante do grid */
+}
+
+legend {
+  display: inline;
+  width: auto;
+  border: 1;
+}
 
 body,
 h1,
 h2,
 h3,
 h4 {
+  font-weight: 300;
+}
+h5 {
+  font-size: medium;
+  color: darkgrey;
   font-weight: 300;
 }
 

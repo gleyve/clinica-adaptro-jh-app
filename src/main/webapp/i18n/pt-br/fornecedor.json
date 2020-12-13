@@ -2,37 +2,38 @@
   "clinicaAdaptrojhApp": {
     "fornecedor": {
       "home": {
-        "title": "Fornecedors",
+        "title": "Fornecedores",
         "createLabel": "Criar novo Fornecedor",
         "createOrEditLabel": "Criar ou editar Fornecedor",
+        "search": "Pesquisar por Fornecedor",
         "notFound": "Nenhum Fornecedor encontrado"
       },
       "created": "Um novo Fornecedor foi criado com o identificador {{ param }}",
       "updated": "Um Fornecedor foi atualizado com o identificador {{ param }}",
       "deleted": "Um Fornecedor foi excluído com o identificador {{ param }}",
       "delete": {
-        "question": "Tem certeza de que deseja excluir Fornecedor {{ id }}?"
+        "question": "Tem certeza de que deseja excluir o Fornecedor {{ id }}?"
       },
       "detail": {
         "title": "Fornecedor"
       },
-      "tipoPessoa": "Tipo Pessoa",
-      "numeroCPF": "Numero CPF",
-      "numeroCNPJ": "Numero CNPJ",
-      "numeroInscricaoEstadual": "Numero Inscricao Estadual",
+      "tipoPessoa": "Tipo",
+      "numeroCPF": "CPF",
+      "numeroCNPJ": "CNPJ",
+      "numeroInscricaoEstadual": "Insc. Estadual",
       "nome": "Nome",
       "nomeFantasia": "Nome Fantasia",
-      "email": "Email",
-      "telefone1": "Telefone 1",
+      "email": "E-mail",
+      "telefone1": "Telefone",
       "telefone2": "Telefone 2",
-      "logradouroNome": "Logradouro Nome",
-      "logradouroNumero": "Logradouro Numero",
-      "logradouroComplemento": "Logradouro Complemento",
+      "logradouroNome": "Logradouro",
+      "logradouroNumero": "Número",
+      "logradouroComplemento": "Complemento",
       "bairro": "Bairro",
-      "cep": "Cep",
+      "cep": "CEP",
       "cidade": "Cidade",
-      "estado": "Estado",
-      "observacao": "Observacao"
+      "estado": "UF",
+      "observacao": "Observação"
     }
   }
 }

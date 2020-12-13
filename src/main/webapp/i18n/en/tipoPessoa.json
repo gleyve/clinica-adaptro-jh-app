@@ -2,8 +2,8 @@
   "clinicaAdaptrojhApp": {
     "TipoPessoa": {
       "null": "",
-      "F": "Pessoa Física (CPF",
-      "J": "Pessoa Jurídica (CNPJ"
+      "F": "Person",
+      "J": "Company"
     }
   }
 }

@@ -4,7 +4,7 @@
     {
       "fieldName": "tipoPessoa",
       "fieldType": "TipoPessoa",
-      "fieldValues": "F (Pessoa Física (CPF)),J (Pessoa Jurídica (CNPJ))",
+      "fieldValues": "F (PF)),J (PJ)",
       "fieldValidateRules": [
         "required"
       ]

@@ -4,8 +4,8 @@ package br.com.clinicaadaptro.app.domain.enumeration;
  * The TipoPessoa enumeration.
  */
 public enum TipoPessoa {
-    F("Pessoa Física (CPF"),
-    J("Pessoa Jurídica (CNPJ");
+    F("PF"),
+    J("PJ");
 
     private final String value;
 

@@ -3,7 +3,8 @@
     "TipoCliente": {
       "null": "",
       "PACIENTE": "Paciente",
-      "OUTRO": "Responsável por paciente ou Outros"
+      "RESP": "Responsável por paciente ou Outros",
+      "OUTRO": "Outros"
     }
   }
 }

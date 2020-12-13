@@ -2,51 +2,51 @@
   "clinicaAdaptrojhApp": {
     "funcionario": {
       "home": {
-        "title": "Funcionarios",
-        "createLabel": "Criar novo Funcionario",
-        "createOrEditLabel": "Criar ou editar Funcionario",
-        "notFound": "Nenhum Funcionario encontrado"
+        "title": "Funcionários/Profissionais Saúde",
+        "createLabel": "Criar novo Funcionário",
+        "createOrEditLabel": "Criar ou editar Funcionário",
+        "notFound": "Nenhum Funcionário encontrado"
       },
-      "created": "Um novo Funcionario foi criado com o identificador {{ param }}",
-      "updated": "Um Funcionario foi atualizado com o identificador {{ param }}",
-      "deleted": "Um Funcionario foi excluído com o identificador {{ param }}",
+      "created": "Um novo Funcionário foi criado com o identificador {{ param }}",
+      "updated": "Um Funcionário foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Funcionário foi excluído com o identificador {{ param }}",
       "delete": {
-        "question": "Tem certeza de que deseja excluir Funcionario {{ id }}?"
+        "question": "Tem certeza de que deseja excluir Funcionário {{ id }}?"
       },
       "detail": {
-        "title": "Funcionario"
+        "title": "Funcionário"
       },
-      "nomeCompleto": "Nome Completo",
+      "nomeCompleto": "Nome",
       "foto": "Foto",
-      "dataNascimento": "Data Nascimento",
-      "numeroConselhoProfissional": "Numero Conselho Profissional",
-      "cpf": "Cpf",
-      "rg": "Rg",
-      "cnh": "Cnh",
-      "telefone1": "Telefone 1",
+      "dataNascimento": "Data Nasc",
+      "numeroConselhoProfissional": "Número Conselho Profissional",
+      "cpf": "CPF",
+      "rg": "RG",
+      "cnh": "CNH",
+      "telefone1": "Telefone",
       "telefone2": "Telefone 2",
       "email": "Email",
-      "dataAdmissao": "Data Admissao",
+      "dataAdmissao": "Data Admissão",
       "dataDesligamento": "Data Desligamento",
-      "salario": "Salario",
+      "salario": "Salário",
       "sexo": "Sexo",
       "estadoCivil": "Estado Civil",
       "escolaridade": "Escolaridade",
-      "funcao": "Funcao",
-      "descOutraFuncao": "Desc Outra Funcao",
-      "logradouroNome": "Logradouro Nome",
-      "logradouroNumero": "Logradouro Numero",
-      "logradouroComplemento": "Logradouro Complemento",
+      "funcao": "Função",
+      "descOutraFuncao": "Desc. Outra Função",
+      "logradouroNome": "Logradouro",
+      "logradouroNumero": "Número",
+      "logradouroComplemento": "Complemento",
       "bairro": "Bairro",
-      "proximidadesLogradouro": "Proximidades Logradouro",
-      "cep": "Cep",
+      "proximidadesLogradouro": "Proximidades",
+      "cep": "CEP",
       "cidade": "Cidade",
-      "estado": "Estado",
+      "estado": "UF",
       "dataHoraCadastro": "Data Hora Cadastro",
-      "observacao": "Observacao",
-      "curriculo": "Curriculo",
-      "user": "User",
-      "especialidadeSaude": "Especialidade Saude"
+      "observacao": "Observação",
+      "curriculo": "Currículo",
+      "user": "Usuário",
+      "especialidadeSaude": "Especialidade"
     }
   }
 }

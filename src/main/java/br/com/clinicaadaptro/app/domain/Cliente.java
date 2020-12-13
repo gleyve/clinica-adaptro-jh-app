@@ -142,9 +142,9 @@ public class Cliente implements Serializable {
     @Column(name = "bairro", length = 30)
     private String bairro;
 
-    @Size(max = 9)
-    @Pattern(regexp = "^[0-9]{5}-[0-9]{3}$")
-    @Column(name = "cep", length = 9)
+    @Size(max = 8)
+    @Pattern(regexp = "(\\d{2})(\\d{3})(\\d{3})")
+    @Column(name = "cep", length = 8)
     private String cep;
 
     @Size(min = 2, max = 30)
