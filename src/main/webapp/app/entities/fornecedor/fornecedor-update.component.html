@@ -11,8 +11,9 @@
                 <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
             </div>
 
-            <div class="form-group">
-                <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.fornecedor.tipoPessoa" for="field_tipoPessoa">Tipo Pessoa</label>
+            <div class="form-row" >
+            <div class="form-group  col-md-2">
+                <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.fornecedor.tipoPessoa" for="field_tipoPessoa">Tipo Pessoa</label><span class="required">*</span>
                 <select class="form-control" name="tipoPessoa" formControlName="tipoPessoa" id="field_tipoPessoa">
                     <option value="F">{{ 'clinicaAdaptrojhApp.TipoPessoa.F' | translate }}</option>
                     <option value="J">{{ 'clinicaAdaptrojhApp.TipoPessoa.J' | translate }}</option>
@@ -25,7 +26,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group col-md-3">
                 <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.fornecedor.numeroCPF" for="field_numeroCPF">Numero CPF</label>
                 <input type="text" class="form-control" name="numeroCPF" id="field_numeroCPF" [textMask]="{mask: MASKS.cpf.textMask, showMask: false }" placeholder="000.000.000-00"
                        formControlName="numeroCPF"/>
@@ -41,7 +42,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group col-md-3">
                 <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.fornecedor.numeroCNPJ" for="field_numeroCNPJ">Numero CNPJ</label>
                 <input type="text" class="form-control" name="numeroCNPJ" id="field_numeroCNPJ" [textMask]="{mask: MASKS.cnpj.textMask}" 
                        placeholder="99.999.999/9999-99"
@@ -59,7 +60,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group col-md-4">
                 <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.fornecedor.numeroInscricaoEstadual" for="field_numeroInscricaoEstadual">Numero Inscricao Estadual</label>
                 <input type="text" class="form-control" name="numeroInscricaoEstadual" id="field_numeroInscricaoEstadual"
                        formControlName="numeroInscricaoEstadual"/>
@@ -70,9 +71,10 @@
                     </small>
                 </div>
             </div>
+            </div>
 
             <div class="form-group">
-                <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.fornecedor.nome" for="field_nome">Nome</label>
+                <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.fornecedor.nome" for="field_nome">Nome</label><span class="required">*</span>
                 <input type="text" class="form-control" name="nome" id="field_nome" oninput="this.value = this.value.toUpperCase()"
                        formControlName="nome"/>
                 <div *ngIf="editForm.get('nome')!.invalid && (editForm.get('nome')!.dirty || editForm.get('nome')!.touched)">
@@ -103,10 +105,12 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <!-- Email, telefone Begin-->
+            <div class="form-row" >
+            <div class="form-group col-md-6">
                 <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.fornecedor.email" for="field_email">Email</label>
                 <input type="text" class="form-control" name="email" id="field_email"  [textMask]="{mask: emailMask}" placeholder="exemplo@dominio.com.br"
-                       formControlName="email" onchange="this.value = this.value.toLowerCase()"/>
+                       formControlName="email" oninput="this.value = this.value.toUpperCase()"/>
                 <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
                     <small class="form-text text-danger"
                            *ngIf="editForm.get('email')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 120 }">
@@ -119,7 +123,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group col-md-3">
                 <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.fornecedor.telefone1" for="field_telefone1">Telefone 1</label>
                 <input type="text" class="form-control" name="telefone1" id="field_telefone1" [textMask]="{mask: MASKS.telefone.textMaskFunction}" 
                        formControlName="telefone1"/>
@@ -135,7 +139,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group col-md-3">
                 <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.fornecedor.telefone2" for="field_telefone2">Telefone 2</label>
                 <input type="text" class="form-control" name="telefone2" id="field_telefone2" [textMask]="{mask: MASKS.telefone.textMaskFunction}"
                        formControlName="telefone2"/>
@@ -150,8 +154,12 @@
                     </small>
                 </div>
             </div>
+            </div>
+            <!-- Email, telefone End-->
 
-            <div class="form-group">
+            <!-- Logradouro Nome, número Begin -->
+            <div class="form-row" >
+            <div class="form-group col-md-10">
                 <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.fornecedor.logradouroNome" for="field_logradouroNome">Logradouro Nome</label>
                 <input type="text" class="form-control" name="logradouroNome" id="field_logradouroNome" oninput="this.value = this.value.toUpperCase()"
                        formControlName="logradouroNome"/>
@@ -167,7 +175,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group col-md-2 ">
                 <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.fornecedor.logradouroNumero" for="field_logradouroNumero">Logradouro Numero</label>
                 <input type="text" class="form-control" name="logradouroNumero" id="field_logradouroNumero"
                        formControlName="logradouroNumero"/>
@@ -178,8 +186,12 @@
                     </small>
                 </div>
             </div>
+            </div>
+            <!-- Logradouro Nome, número End -->
 
-            <div class="form-group">
+            <!-- Logradouro Complemento, bairro Begin -->
+            <div class="form-row" >
+            <div class="form-group col-md-6">
                 <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.fornecedor.logradouroComplemento" for="field_logradouroComplemento">Logradouro Complemento</label>
                 <input type="text" class="form-control" name="logradouroComplemento" id="field_logradouroComplemento" oninput="this.value = this.value.toUpperCase()"
                        formControlName="logradouroComplemento"/>
@@ -191,7 +203,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.fornecedor.bairro" for="field_bairro">Bairro</label>
                 <input type="text" class="form-control" name="bairro" id="field_bairro" oninput="this.value = this.value.toUpperCase()"
                        formControlName="bairro"/>
@@ -206,24 +218,12 @@
                     </small>
                 </div>
             </div>
-
-            <div class="form-group">
-                <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.fornecedor.cep" for="field_cep">Cep</label>
-                <input type="text" class="form-control" name="cep" id="field_cep" [textMask]="{mask: MASKS.cep.textMask}" placeholder="00.000-000"
-                       formControlName="cep"/>
-                <div *ngIf="editForm.get('cep')!.invalid && (editForm.get('cep')!.dirty || editForm.get('cep')!.touched)">
-                    <small class="form-text text-danger"
-                           *ngIf="editForm.get('cep')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 8 }">
-                    This field cannot be longer than 8 characters.
-                    </small>
-                    <small class="form-text text-danger"
-                           *ngIf="editForm.get('cep')?.errors?.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Cep' }">
-                        This field should follow pattern for "Cep".
-                    </small>
-                </div>
             </div>
+            <!-- Logradouro Complemento, bairro End -->
 
-            <div class="form-group">
+            <!-- Cidade, Estado, CEP Begin -->
+            <div class="form-row">
+            <div class="form-group col-md-6">
                 <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.fornecedor.cidade" for="field_cidade">Cidade</label>
                 <input type="text" class="form-control" name="cidade" id="field_cidade" oninput="this.value = this.value.toUpperCase()"
                        formControlName="cidade"/>
@@ -239,7 +239,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group col-md-4">
                 <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.fornecedor.estado" for="field_estado">Estado</label>
                 <select class="form-control" name="estado" formControlName="estado" id="field_estado">
                     <option value="AC">{{ 'clinicaAdaptrojhApp.Estado.AC' | translate }}</option>
@@ -271,6 +271,24 @@
                     <option value="TO">{{ 'clinicaAdaptrojhApp.Estado.TO' | translate }}</option>
                 </select>
             </div>
+            <div class="form-group col-md-2">
+                <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.fornecedor.cep" for="field_cep">Cep</label>
+                <input type="text" class="form-control" name="cep" id="field_cep" [textMask]="{mask: MASKS.cep.textMask}" placeholder="00.000-000"
+                       formControlName="cep"/>
+                <div *ngIf="editForm.get('cep')!.invalid && (editForm.get('cep')!.dirty || editForm.get('cep')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('cep')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 8 }">
+                    This field cannot be longer than 8 characters.
+                    </small>
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('cep')?.errors?.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Cep' }">
+                        This field should follow pattern for "Cep".
+                    </small>
+                </div>
+            </div>
+            </div>
+            <!-- Cidade, Estado, CEP End -->
+
             
             <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.fornecedor.observacao" for="field_observacao">Observacao</label>
 

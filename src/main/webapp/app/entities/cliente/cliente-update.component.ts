@@ -11,6 +11,8 @@ import { JhiDataUtils, JhiFileLoadError, JhiEventManager, JhiEventWithContent } 
 import { ICliente, Cliente } from 'app/shared/model/cliente.model';
 import { ClienteService } from './cliente.service';
 import { AlertError } from 'app/shared/alert/alert-error.model';
+import { MASKS, NgBrazilValidators } from 'ng-brazil';
+import emailMask from 'text-mask-addons/dist/emailMask';
 
 @Component({
   selector: 'jhi-cliente-update',
@@ -21,6 +23,10 @@ export class ClienteUpdateComponent implements OnInit {
   clientes: ICliente[] = [];
   dataNascimentoDp: any;
   dataValidadeConvenioDp: any;
+
+  public MASKS = MASKS;
+  emailMask = emailMask;
+  public observacao = '';
 
   editForm = this.fb.group({
     id: [],
@@ -38,16 +44,16 @@ export class ClienteUpdateComponent implements OnInit {
     dataValidadeConvenio: [],
     procedencia: [],
     profissao: [null, [Validators.minLength(2), Validators.maxLength(70)]],
-    cpf: [null, [Validators.maxLength(11), Validators.pattern('(\\d{3})(\\d{3})(\\d{3})(\\d{2})')]],
+    cpf: [null, [NgBrazilValidators.cpf]],
     rg: [null, [Validators.maxLength(15)]],
-    telefone1: [null, [Validators.maxLength(15), Validators.pattern('^(\\d{2,3}|\\(\\d{2,3}\\))?[ ]?\\d{3,4}[-]?\\d{3,4}$')]],
-    telefone2: [null, [Validators.maxLength(15), Validators.pattern('^(\\d{2,3}|\\(\\d{2,3}\\))?[ ]?\\d{3,4}[-]?\\d{3,4}$')]],
+    telefone1: [null, [NgBrazilValidators.telefone]],
+    telefone2: [null, [NgBrazilValidators.telefone]],
     email: [null, [Validators.maxLength(120), Validators.pattern('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$')]],
     logradouroNome: [null, [Validators.minLength(2), Validators.maxLength(70)]],
     logradouroNumero: [null, [Validators.maxLength(5)]],
     logradouroComplemento: [null, [Validators.maxLength(50)]],
     bairro: [null, [Validators.minLength(2), Validators.maxLength(30)]],
-    cep: [null, [Validators.maxLength(9), Validators.pattern('^[0-9]{5}-[0-9]{3}$')]],
+    cep: [null, [NgBrazilValidators.cep]],
     cidade: [null, [Validators.minLength(2), Validators.maxLength(30)]],
     estado: [],
     parentescoResponsavel: [],
@@ -178,16 +184,16 @@ export class ClienteUpdateComponent implements OnInit {
       dataValidadeConvenio: this.editForm.get(['dataValidadeConvenio'])!.value,
       procedencia: this.editForm.get(['procedencia'])!.value,
       profissao: this.editForm.get(['profissao'])!.value,
-      cpf: this.editForm.get(['cpf'])!.value,
-      rg: this.editForm.get(['rg'])!.value,
-      telefone1: this.editForm.get(['telefone1'])!.value,
-      telefone2: this.editForm.get(['telefone2'])!.value,
+      cpf: this.cleanupMask(this.editForm.get(['cpf'])!.value),
+      rg: this.cleanupMask(this.editForm.get(['rg'])!.value),
+      telefone1: this.cleanupMask(this.editForm.get(['telefone1'])!.value),
+      telefone2: this.cleanupMask(this.editForm.get(['telefone2'])!.value),
       email: this.editForm.get(['email'])!.value,
       logradouroNome: this.editForm.get(['logradouroNome'])!.value,
       logradouroNumero: this.editForm.get(['logradouroNumero'])!.value,
       logradouroComplemento: this.editForm.get(['logradouroComplemento'])!.value,
       bairro: this.editForm.get(['bairro'])!.value,
-      cep: this.editForm.get(['cep'])!.value,
+      cep: this.cleanupMask(this.editForm.get(['cep'])!.value),
       cidade: this.editForm.get(['cidade'])!.value,
       estado: this.editForm.get(['estado'])!.value,
       parentescoResponsavel: this.editForm.get(['parentescoResponsavel'])!.value,
@@ -220,5 +226,11 @@ export class ClienteUpdateComponent implements OnInit {
 
   trackById(index: number, item: ICliente): any {
     return item.id;
+  }
+
+  cleanupMask(strMaskedData: any): any {
+    if (strMaskedData === null || strMaskedData === '' || strMaskedData === undefined) {
+      return (strMaskedData = undefined);
+    } else return strMaskedData.replace(/\D+/g, '');
   }
 }

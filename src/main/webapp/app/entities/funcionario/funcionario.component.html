@@ -33,11 +33,11 @@
             </thead>
             <tbody>
                 <tr *ngFor="let funcionario of funcionarios ;trackBy: trackId">
-                    <td><a [routerLink]="['/funcionario', funcionario.id, 'view']">{{ funcionario.id }}</a></td>
+                    <td class="align-middle text-center"><a [routerLink]="['/funcionario', funcionario.id, 'view']">{{ funcionario.id }}</a></td>
                     <td>{{ funcionario.nomeCompleto }}</td>
-                    <td>{{ funcionario.telefone1 }}</td>
-                    <td jhiTranslate="{{ 'clinicaAdaptrojhApp.CategoriaFuncionario.' + funcionario.funcao }}">{{ funcionario.funcao }}</td>
-                    <td>{{ funcionario.especialidadeSaude?.sigla }}</td>
+                    <td class="align-middle text-center">{{ funcionario.telefone1 | telefone }} <br> {{ funcionario.telefone2 | telefone }}</td>
+                    <td class="align-middle text-center" jhiTranslate="{{ 'clinicaAdaptrojhApp.CategoriaFuncionario.' + funcionario.funcao }}">{{ funcionario.funcao }}</td>
+                    <td class="align-middle text-center">{{ funcionario.especialidadeSaude?.sigla }}</td>
 
                     <td>
                         {{ funcionario.user?.login }}

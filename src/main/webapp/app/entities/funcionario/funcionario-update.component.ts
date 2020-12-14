@@ -15,6 +15,8 @@ import { IUser } from 'app/core/user/user.model';
 import { UserService } from 'app/core/user/user.service';
 import { IEspecialidadeSaude } from 'app/shared/model/especialidade-saude.model';
 import { EspecialidadeSaudeService } from 'app/entities/especialidade-saude/especialidade-saude.service';
+import { MASKS, NgBrazilValidators } from 'ng-brazil';
+import emailMask from 'text-mask-addons/dist/emailMask';
 
 type SelectableEntity = IUser | IEspecialidadeSaude;
 
@@ -30,6 +32,10 @@ export class FuncionarioUpdateComponent implements OnInit {
   dataAdmissaoDp: any;
   dataDesligamentoDp: any;
 
+  public MASKS = MASKS;
+  emailMask = emailMask;
+  public observacao = '';
+
   editForm = this.fb.group({
     id: [],
     nomeCompleto: [null, [Validators.required, Validators.maxLength(100)]],
@@ -37,11 +43,11 @@ export class FuncionarioUpdateComponent implements OnInit {
     fotoContentType: [],
     dataNascimento: [],
     numeroConselhoProfissional: [null, [Validators.maxLength(20)]],
-    cpf: [null, [Validators.maxLength(11), Validators.pattern('(\\d{3})(\\d{3})(\\d{3})(\\d{2})')]],
+    cpf: [null, [NgBrazilValidators.cpf]],
     rg: [null, [Validators.maxLength(15)]],
     cnh: [null, [Validators.maxLength(15)]],
-    telefone1: [null, [Validators.maxLength(15), Validators.pattern('^(\\d{2,3}|\\(\\d{2,3}\\))?[ ]?\\d{3,4}[-]?\\d{3,4}$')]],
-    telefone2: [null, [Validators.maxLength(15), Validators.pattern('^(\\d{2,3}|\\(\\d{2,3}\\))?[ ]?\\d{3,4}[-]?\\d{3,4}$')]],
+    telefone1: [null, [NgBrazilValidators.telefone]],
+    telefone2: [null, [NgBrazilValidators.telefone]],
     email: [null, [Validators.maxLength(120), Validators.pattern('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$')]],
     dataAdmissao: [],
     dataDesligamento: [],
@@ -56,7 +62,7 @@ export class FuncionarioUpdateComponent implements OnInit {
     logradouroComplemento: [null, [Validators.maxLength(50)]],
     bairro: [null, [Validators.minLength(2), Validators.maxLength(30)]],
     proximidadesLogradouro: [null, [Validators.maxLength(50)]],
-    cep: [null, [Validators.maxLength(9), Validators.pattern('^[0-9]{5}-[0-9]{3}$')]],
+    cep: [null, [NgBrazilValidators.cep]],
     cidade: [null, [Validators.minLength(2), Validators.maxLength(30)]],
     estado: [],
     dataHoraCadastro: [null, [Validators.required]],
@@ -183,11 +189,11 @@ export class FuncionarioUpdateComponent implements OnInit {
       foto: this.editForm.get(['foto'])!.value,
       dataNascimento: this.editForm.get(['dataNascimento'])!.value,
       numeroConselhoProfissional: this.editForm.get(['numeroConselhoProfissional'])!.value,
-      cpf: this.editForm.get(['cpf'])!.value,
-      rg: this.editForm.get(['rg'])!.value,
-      cnh: this.editForm.get(['cnh'])!.value,
-      telefone1: this.editForm.get(['telefone1'])!.value,
-      telefone2: this.editForm.get(['telefone2'])!.value,
+      cpf: this.cleanupMask(this.editForm.get(['cpf'])!.value),
+      rg: this.cleanupMask(this.editForm.get(['rg'])!.value),
+      cnh: this.cleanupMask(this.editForm.get(['cnh'])!.value),
+      telefone1: this.cleanupMask(this.editForm.get(['telefone1'])!.value),
+      telefone2: this.cleanupMask(this.editForm.get(['telefone2'])!.value),
       email: this.editForm.get(['email'])!.value,
       dataAdmissao: this.editForm.get(['dataAdmissao'])!.value,
       dataDesligamento: this.editForm.get(['dataDesligamento'])!.value,
@@ -202,7 +208,7 @@ export class FuncionarioUpdateComponent implements OnInit {
       logradouroComplemento: this.editForm.get(['logradouroComplemento'])!.value,
       bairro: this.editForm.get(['bairro'])!.value,
       proximidadesLogradouro: this.editForm.get(['proximidadesLogradouro'])!.value,
-      cep: this.editForm.get(['cep'])!.value,
+      cep: this.cleanupMask(this.editForm.get(['cep'])!.value),
       cidade: this.editForm.get(['cidade'])!.value,
       estado: this.editForm.get(['estado'])!.value,
       dataHoraCadastro: this.editForm.get(['dataHoraCadastro'])!.value
@@ -234,5 +240,11 @@ export class FuncionarioUpdateComponent implements OnInit {
 
   trackById(index: number, item: SelectableEntity): any {
     return item.id;
+  }
+
+  cleanupMask(strMaskedData: any): any {
+    if (strMaskedData === null || strMaskedData === '' || strMaskedData === undefined) {
+      return (strMaskedData = undefined);
+    } else return strMaskedData.replace(/\D+/g, '');
   }
 }

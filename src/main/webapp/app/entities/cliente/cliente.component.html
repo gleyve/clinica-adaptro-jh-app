@@ -1,4 +1,56 @@
 <div>
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <!-- Início formulário de busca -->
+        <div class="row">
+            <div class="col-sm-6">
+                <form class="form-inline" name="searchForm2" novalidate [formGroup]="searchForm" (ngSubmit)="search()">
+                    <!-- Search Radio Fields -->
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" formControlName="searchParamRadio" name="searchParamRadio" id="searchParamRadio" value="nomeCompleto" checked>
+                        <label class="form-check-label" for="inlineRadio1">Nome/Razão Social</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" formControlName="searchParamRadio" name="searchParamRadio" id="cpf" value="cpf">
+                        <label class="form-check-label" for="inlineRadio2">CPF</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" formControlName="searchParamRadio" name="searchParamRadio" id="rg" value="rg">
+                        <label class="form-check-label" for="inlineRadio2">RG</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" formControlName="searchParamRadio" name="searchParamRadio" id="email" value="email">
+                        <label class="form-check-label" for="inlineRadio2">E-mail</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" formControlName="searchParamCheckAtivo" name="searchParamCheckAtivo" id="inlinecheckbox1" value="ATIVO" checked>
+                        <label class="form-check-label" for="inlineRadio3">Ativo</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" formControlName="searchParamCheckInativo" name="searchParamCheckInativo" id="inlinecheckbox2" value="INATIVO" checked>
+                        <label class="form-check-label" for="inlineRadio3">Inativo</label>
+                    </div>
+                    <!-- currentSearch Input Text Fields -->
+                    <div class="input-group w-100 mt-3">
+                        <input type="text" class="form-control mr-2" required formControlName="valorBusca" id="valorBusca" name="valorBusca" maxlength="60" placeholder="{{ 'entity.action.searchPlaceholder' | translate }}">
+                        <button type="submit" class="input-group-append btn btn-info mr-2" >
+                            <fa-icon icon="search"></fa-icon>
+                        </button>
+
+                        <button class="btn btn-info mr-2" type="button" (click)="onClear()" jhiTranslate="entity.action.clearSearch" >
+                            <fa-icon icon="eraser"></fa-icon>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    <br>
+    <br>
+
     <h2 id="page-heading">
         <span jhiTranslate="clinicaAdaptrojhApp.cliente.home.title">Clientes</span>
 
@@ -10,9 +62,6 @@
         </button>
     </h2>
 
-    <jhi-alert-error></jhi-alert-error>
-
-    <jhi-alert></jhi-alert>
 
     <div class="alert alert-warning" id="no-result" *ngIf="clientes?.length === 0">
         <span jhiTranslate="clinicaAdaptrojhApp.cliente.home.notFound">No clientes found</span>
@@ -30,23 +79,26 @@
                     <th scope="col"  jhiSortBy="convenio"><span jhiTranslate="clinicaAdaptrojhApp.cliente.convenio">Convenio</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="telefone1"><span jhiTranslate="clinicaAdaptrojhApp.cliente.telefone1">Telefone 1</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="email"><span jhiTranslate="clinicaAdaptrojhApp.cliente.email">Email</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="email"><span jhiTranslate="clinicaAdaptrojhApp.cliente.ativo">Ativo</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
 
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let cliente of clientes ;trackBy: trackId">
-                    <td><a [routerLink]="['/cliente', cliente.id, 'view']">{{ cliente.id }}</a></td>
-                    <td jhiTranslate="{{ 'clinicaAdaptrojhApp.TipoCliente.' + cliente.tipoCliente }}">{{ cliente.tipoCliente }}</td>
-                    <td>{{ cliente.nomeCompleto }}</td>
-                    <td>
+                    <td class="align-middle text-center"><a [routerLink]="['/cliente', cliente.id, 'view']">{{ cliente.id }}</a></td>
+                    <td class="align-middle text-center" jhiTranslate="{{ 'clinicaAdaptrojhApp.TipoCliente.' + cliente.tipoCliente }}">{{ cliente.tipoCliente }}</td>
+                    <td class="align-middle text-center">{{ cliente.nomeCompleto }}</td>
+                    <td class="align-middle text-center">
                         <a *ngIf="cliente.foto" (click)="openFile(cliente.fotoContentType, cliente.foto)">
                             <img [src]="'data:' + cliente.fotoContentType + ';base64,' + cliente.foto" style="max-height: 30px;" alt="cliente image"/>
                         </a>
                     </td>
-                    <td jhiTranslate="{{ 'clinicaAdaptrojhApp.Convenio.' + cliente.convenio }}">{{ cliente.convenio }}</td>
-                    <td>{{ cliente.telefone1 }}</td>
-                    <td>{{ cliente.email }}</td>
+                    <!-- <td jhiTranslate="{{ 'clinicaAdaptrojhApp.Convenio.' + cliente.convenio }}">{{ cliente.convenio }} </td> -->
+                    <td class="align-middle text-center">{{ cliente.convenio }} <br>{{ cliente.numCarteirinhaConvenio }} </td>
+                    <td class="align-middle text-center">{{ cliente.telefone1 | telefone }} <br> {{ cliente.telefone2 | telefone }}</td>
+                    <td class="align-middle text-center">{{ cliente.email }}</td>
+                    <td *ngIf="cliente.ativo">Sim</td> <td *ngIf="!cliente.ativo">Não</td>
 
                     <td class="text-right">
                         <div class="btn-group">

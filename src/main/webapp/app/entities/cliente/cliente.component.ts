@@ -10,6 +10,7 @@ import { ICliente } from 'app/shared/model/cliente.model';
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { ClienteService } from './cliente.service';
 import { ClienteDeleteDialogComponent } from './cliente-delete-dialog.component';
+import { Validators, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'jhi-cliente',
@@ -24,6 +25,8 @@ export class ClienteComponent implements OnInit, OnDestroy {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  searchForm!: FormGroup;
+  myQueryObject!: Object;
 
   constructor(
     protected clienteService: ClienteService,
@@ -34,7 +37,13 @@ export class ClienteComponent implements OnInit, OnDestroy {
     protected modalService: NgbModal
   ) {}
 
-  loadPage(page?: number, dontNavigate?: boolean): void {
+  search(): void {
+    //this.myQueryObject = this.buildCurrentSearch2(1);
+    //this.performSearch(this.myQueryObject, true);
+    this.loadPage();
+  }
+
+  /*   loadPage(page?: number, dontNavigate?: boolean): void {
     const pageToLoad: number = page || this.page || 1;
 
     this.clienteService
@@ -47,9 +56,25 @@ export class ClienteComponent implements OnInit, OnDestroy {
         (res: HttpResponse<ICliente[]>) => this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate),
         () => this.onError()
       );
+  } */
+
+  loadPage(page?: number, dontNavigate?: boolean): void {
+    const pageToLoad: number = page || this.page || 1;
+    this.myQueryObject = this.buildCurrentSearch2(1);
+    /*     this.myQueryObject ={
+        page: pageToLoad - 1,
+        size: this.itemsPerPage,
+        sort: this.sort(),
+    } */
+
+    this.clienteService.query(this.myQueryObject).subscribe(
+      (res: HttpResponse<ICliente[]>) => this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate),
+      () => this.onError()
+    );
   }
 
   ngOnInit(): void {
+    this.initSearchForm();
     this.handleNavigation();
     this.registerChangeInClientes();
   }
@@ -103,6 +128,61 @@ export class ClienteComponent implements OnInit, OnDestroy {
       result.push('id');
     }
     return result;
+  }
+
+  buildCurrentSearch2(page?: number): Object {
+    let myQueryObjectTemp: { [k: string]: any } = {};
+    const pageToLoad: number = page || this.page || 1;
+
+    myQueryObjectTemp = { page: pageToLoad - 1, size: this.itemsPerPage, sort: this.sort() };
+    const searchParameter: string = this.searchForm.get(['searchParamRadio'])!.value;
+    const searchParameterAtivo: string = this.searchForm.get(['searchParamCheckAtivo'])!.value;
+    const searchParameterInativo: string = this.searchForm.get(['searchParamCheckInativo'])!.value;
+
+    // Ativo/Inativo
+    if (searchParameterAtivo && searchParameterInativo) {
+      // Trazer todos, não precisa especificar filtro
+    } else if (searchParameterAtivo && !searchParameterInativo) {
+      myQueryObjectTemp['ativo.equals'] = true;
+    } else if (!searchParameterAtivo && searchParameterInativo) {
+      myQueryObjectTemp['ativo.equals'] = false;
+    }
+
+    /// Add a new object key/value. Ex: this.objTeste["key3"] = "value3";
+    if (this.searchForm.get(['valorBusca'])!.value !== null) {
+      myQueryObjectTemp[searchParameter + '.contains'] = this.searchForm.get(['valorBusca'])!.value;
+    }
+
+    return myQueryObjectTemp;
+  }
+
+  performSearch(queryObject: Object, dontNavigate?: boolean): void {
+    const pageToLoad: number = this.page || 1;
+    this.clienteService.query(queryObject).subscribe(
+      (res: HttpResponse<ICliente[]>) => this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate),
+      () => this.onError()
+    );
+  }
+
+  private initSearchForm(): void {
+    this.searchForm = new FormGroup({
+      email: new FormControl(null, Validators.required),
+      valorBusca: new FormControl(null, Validators.required),
+      searchParamRadio: new FormControl('nomeCompleto', Validators.required),
+      searchParamCheckAtivo: new FormControl(true),
+      searchParamCheckInativo: new FormControl(true),
+    });
+  }
+
+  onClear(): void {
+    //this.searchForm.reset();
+    this.searchForm = new FormGroup({
+      email: new FormControl(null, Validators.required),
+      valorBusca: new FormControl(null, Validators.required),
+      searchParamRadio: new FormControl('nomeCompleto', Validators.required),
+      searchParamCheckAtivo: new FormControl(true),
+      searchParamCheckInativo: new FormControl(true),
+    });
   }
 
   protected onSuccess(data: ICliente[] | null, headers: HttpHeaders, page: number, navigate: boolean): void {

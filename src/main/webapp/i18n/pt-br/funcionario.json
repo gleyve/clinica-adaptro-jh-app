@@ -14,7 +14,7 @@
         "question": "Tem certeza de que deseja excluir Funcionário {{ id }}?"
       },
       "detail": {
-        "title": "Funcionário"
+        "title": "Funcionário/Profiss. Saúde"
       },
       "nomeCompleto": "Nome",
       "foto": "Foto",
@@ -45,7 +45,7 @@
       "dataHoraCadastro": "Data Hora Cadastro",
       "observacao": "Observação",
       "curriculo": "Currículo",
-      "user": "Usuário",
+      "user": "Usuário de Acesso ao Sistema",
       "especialidadeSaude": "Especialidade"
     }
   }

@@ -19,7 +19,7 @@ export class FornecedorUpdateComponent implements OnInit {
 
   public MASKS = MASKS;
   emailMask = emailMask;
-
+  public observacao = '';
   /*   constructor() { 
     this.formFields = {
       estado: [''],
@@ -38,7 +38,7 @@ export class FornecedorUpdateComponent implements OnInit {
   } */
 
   // angular-input-masks
-  public observacao = '';
+
   public myModel = '';
   public mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
   // CPF: 932.463.073-4

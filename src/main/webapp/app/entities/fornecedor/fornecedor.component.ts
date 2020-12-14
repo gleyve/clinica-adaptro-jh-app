@@ -1,10 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, TestabilityRegistry } from '@angular/core';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, ParamMap, Router, Data } from '@angular/router';
 import { Subscription, combineLatest } from 'rxjs';
 import { JhiEventManager } from 'ng-jhipster';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder, Validators, FormGroup, FormControl, CheckboxRequiredValidator } from '@angular/forms';
+import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { IFornecedor } from 'app/shared/model/fornecedor.model';
 
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
@@ -21,7 +21,7 @@ export class FornecedorComponent implements OnInit, OnDestroy {
   eventSubscriber?: Subscription;
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
-  page!: number;
+  page!: number; // when you add an exclamation mark after variable/property name, you're telling to TypeScript that you're certain that value is not null or undefined
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
@@ -37,59 +37,24 @@ export class FornecedorComponent implements OnInit, OnDestroy {
   ) {}
 
   search(): void {
-    if (this.searchForm.get(['valorBusca'])!.value !== null) {
-      this.myQueryObject = this.buildCurrentSearch(1);
-      this.performSearch(this.myQueryObject, true);
-    }
+    //this.myQueryObject = this.buildCurrentSearch2(1);
+    //this.performSearch(this.myQueryObject, true);
+    this.loadPage();
   }
 
-  buildCurrentSearch(page?: number): Object {
+  buildCurrentSearch2(page?: number): Object {
+    let myQueryObjectTemp: { [k: string]: any } = {};
     const pageToLoad: number = page || this.page || 1;
 
+    myQueryObjectTemp = { page: pageToLoad - 1, size: this.itemsPerPage, sort: this.sort() };
     const searchParameter: string = this.searchForm.get(['searchParamRadio'])!.value;
-    switch (searchParameter) {
-      case 'nome': {
-        this.myQueryObject = {
-          page: pageToLoad - 1,
-          size: this.itemsPerPage,
-          sort: this.sort(),
-          'nome.contains': this.searchForm.get(['valorBusca'])!.value,
-        };
-        break;
-      }
-      case 'fantasia': {
-        this.myQueryObject = {
-          page: pageToLoad - 1,
-          size: this.itemsPerPage,
-          sort: this.sort(),
-          'nomeFantasia.contains': this.searchForm.get(['valorBusca'])!.value,
-        };
-        break;
-      }
-      case 'cpf': {
-        this.myQueryObject = {
-          page: pageToLoad - 1,
-          size: this.itemsPerPage,
-          sort: this.sort(),
-          'numeroCPF.equals': this.searchForm.get(['valorBusca'])!.value,
-        };
-        break;
-      }
-      case 'cnpj': {
-        this.myQueryObject = {
-          page: pageToLoad - 1,
-          size: this.itemsPerPage,
-          sort: this.sort(),
-          'numeroCNPJ.equals': this.searchForm.get(['valorBusca'])!.value,
-        };
-        break;
-      }
-      default: {
-        break;
-      }
+
+    /// Add a new object key/value. Ex: this.objTeste["key3"] = "value3";
+    if (this.searchForm.get(['valorBusca'])!.value !== null) {
+      myQueryObjectTemp[searchParameter + '.contains'] = this.searchForm.get(['valorBusca'])!.value;
     }
 
-    return this.myQueryObject;
+    return myQueryObjectTemp;
   }
 
   private initSearchForm(): void {
@@ -97,7 +62,6 @@ export class FornecedorComponent implements OnInit, OnDestroy {
       email: new FormControl(null, Validators.required),
       valorBusca: new FormControl(null, Validators.required),
       searchParamRadio: new FormControl('nome', Validators.required),
-      //searchParamCheckAtivo: new FormControl(true)
     });
   }
 
@@ -107,28 +71,28 @@ export class FornecedorComponent implements OnInit, OnDestroy {
       email: new FormControl(null, Validators.required),
       valorBusca: new FormControl(null, Validators.required),
       searchParamRadio: new FormControl('nome', Validators.required),
-      //searchParamCheckAtivo: new FormControl(true)
     });
   }
 
   loadPage(page?: number, dontNavigate?: boolean): void {
     const pageToLoad: number = page || this.page || 1;
-    this.fornecedorService
-      .query({
+    this.myQueryObject = this.buildCurrentSearch2(1);
+    /*     this.myQueryObject ={
         page: pageToLoad - 1,
         size: this.itemsPerPage,
         sort: this.sort(),
-      })
-      .subscribe(
-        (res: HttpResponse<IFornecedor[]>) => this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate),
-        () => this.onError()
-      );
+    } */
+
+    this.fornecedorService.query(this.myQueryObject).subscribe(
+      (res: HttpResponse<IFornecedor[]>) => this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate),
+      () => this.onError()
+    );
   }
 
   ngOnInit(): void {
+    this.initSearchForm();
     this.handleNavigation();
     this.registerChangeInFornecedors();
-    this.initSearchForm();
   }
 
   protected handleNavigation(): void {
@@ -181,7 +145,7 @@ export class FornecedorComponent implements OnInit, OnDestroy {
   }
 
   performSearch(queryObject: Object, dontNavigate?: boolean): void {
-    const pageToLoad: number = 1 || this.page || 1;
+    const pageToLoad: number = this.page || 1;
     this.fornecedorService.query(queryObject).subscribe(
       (res: HttpResponse<IFornecedor[]>) => this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate),
       () => this.onError()

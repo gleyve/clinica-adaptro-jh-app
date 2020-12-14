@@ -11,8 +11,10 @@
                     <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
                 </div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.tipoCliente" for="field_tipoCliente">Tipo Cliente</label>
+                <!-- Tipo, procedência, ativo Begin -->
+                <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.tipoCliente" for="field_tipoCliente">Tipo Cliente</label><span class="required">*</span>
                     <select class="form-control" name="tipoCliente" formControlName="tipoCliente" id="field_tipoCliente">
                         <option value="PACIENTE">{{ 'clinicaAdaptrojhApp.TipoCliente.PACIENTE' | translate }}</option>
                         <option value="OUTRO">{{ 'clinicaAdaptrojhApp.TipoCliente.OUTRO' | translate }}</option>
@@ -25,7 +27,28 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group col-md-6">
+                    <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.procedencia" for="field_procedencia">Procedencia</label>
+                    <select class="form-control" name="procedencia" formControlName="procedencia" id="field_procedencia">
+                        <option value="ENCAMINHAMENTO_MEDICO">{{ 'clinicaAdaptrojhApp.Procedencia.ENCAMINHAMENTO_MEDICO' | translate }}</option>
+                        <option value="INDICACAO_PACIENTE">{{ 'clinicaAdaptrojhApp.Procedencia.INDICACAO_PACIENTE' | translate }}</option>
+                        <option value="INDICACAO_MEDICO">{{ 'clinicaAdaptrojhApp.Procedencia.INDICACAO_MEDICO' | translate }}</option>
+                        <option value="INTERNET">{{ 'clinicaAdaptrojhApp.Procedencia.INTERNET' | translate }}</option>
+                        <option value="OUTRO">{{ 'clinicaAdaptrojhApp.Procedencia.OUTRO' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.ativo" for="field_ativo">Ativo</label>
+                    <input type="checkbox" class="form-control" name="ativo" id="field_ativo"
+                           formControlName="ativo"/>
+                </div>
+                </div>
+                <!-- Tipo, procedência, ativo End -->
+
+                <!-- Matrícula, foto Begin -->
+                <div class="form-row">
+                <div class="form-group col-md-4">
                     <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.matricula" for="field_matricula">Matricula</label>
                     <input type="text" class="form-control" name="matricula" id="field_matricula"
                            formControlName="matricula"/>
@@ -41,23 +64,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.nomeCompleto" for="field_nomeCompleto">Nome Completo</label>
-                    <input type="text" class="form-control" name="nomeCompleto" id="field_nomeCompleto"
-                           formControlName="nomeCompleto"/>
-                    <div *ngIf="editForm.get('nomeCompleto')!.invalid && (editForm.get('nomeCompleto')!.dirty || editForm.get('nomeCompleto')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('nomeCompleto')?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('nomeCompleto')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 100 }">
-                        This field cannot be longer than 100 characters.
-                        </small>
-                    </div>
-                </div>
-
-                <div class="form-group">
+                <div class="form-group col-md-6">
                     <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.foto" for="field_foto">Foto</label>
                     <div>
                         <img [src]="'data:' + editForm.get('fotoContentType')!.value + ';base64,' + editForm.get('foto')!.value" style="max-height: 100px;" *ngIf="editForm.get('foto')!.value" alt="cliente image"/>
@@ -80,19 +87,30 @@
                         </small>
                     </div>
                 </div>
+                </div>
+                <!-- Matrícula, foto End -->
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.dataNascimento" for="field_dataNascimento">Data Nascimento</label>
-                    <div class="input-group">
-                        <input id="field_dataNascimento" type="text" class="form-control" name="dataNascimento" ngbDatepicker #dataNascimentoDp="ngbDatepicker" formControlName="dataNascimento"/>
-                        <span class="input-group-append">
-                            <button type="button" class="btn btn-secondary" (click)="dataNascimentoDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
-                        </span>
+                    <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.nomeCompleto" for="field_nomeCompleto">Nome Completo</label><span class="required">*</span>
+                    <input type="text" class="form-control" name="nomeCompleto" id="field_nomeCompleto" oninput="this.value = this.value.toUpperCase()"
+                           formControlName="nomeCompleto"/>
+                    <div *ngIf="editForm.get('nomeCompleto')!.invalid && (editForm.get('nomeCompleto')!.dirty || editForm.get('nomeCompleto')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nomeCompleto')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nomeCompleto')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 100 }">
+                        This field cannot be longer than 100 characters.
+                        </small>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.sexo" for="field_sexo">Sexo</label>
+
+                <!-- Sexo, Estdo civil, Data nasc Begin -->
+                <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.sexo" for="field_sexo">Sexo</label><span class="required">*</span>
                     <select class="form-control" name="sexo" formControlName="sexo" id="field_sexo">
                         <option value="M">{{ 'clinicaAdaptrojhApp.Sexo.M' | translate }}</option>
                         <option value="F">{{ 'clinicaAdaptrojhApp.Sexo.F' | translate }}</option>
@@ -105,7 +123,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group col-md-4">
                     <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.estadoCivil" for="field_estadoCivil">Estado Civil</label>
                     <select class="form-control" name="estadoCivil" formControlName="estadoCivil" id="field_estadoCivil">
                         <option value="SOLTEIRO">{{ 'clinicaAdaptrojhApp.EstadoCivil.SOLTEIRO' | translate }}</option>
@@ -118,7 +136,21 @@
                     </select>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group col-md-4">
+                    <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.dataNascimento" for="field_dataNascimento">Data Nascimento</label>
+                    <div class="input-group">
+                        <input id="field_dataNascimento" type="text" class="form-control" name="dataNascimento" ngbDatepicker #dataNascimentoDp="ngbDatepicker" formControlName="dataNascimento"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dataNascimentoDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                </div>
+                <!-- Sexo, Estado civil, Data nasc End -->
+
+                <!-- Escolaridade, Profissão Begin -->
+                <div class="form-row">
+                <div class="form-group col-md-6">
                     <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.escolaridade" for="field_escolaridade">Escolaridade</label>
                     <select class="form-control" name="escolaridade" formControlName="escolaridade" id="field_escolaridade">
                         <option value="EFC">{{ 'clinicaAdaptrojhApp.Escolaridade.EFC' | translate }}</option>
@@ -131,55 +163,7 @@
                         <option value="DOU">{{ 'clinicaAdaptrojhApp.Escolaridade.DOU' | translate }}</option>
                     </select>
                 </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.convenio" for="field_convenio">Convenio</label>
-                    <select class="form-control" name="convenio" formControlName="convenio" id="field_convenio">
-                        <option value="UNIMED_CE">{{ 'clinicaAdaptrojhApp.Convenio.UNIMED_CE' | translate }}</option>
-                        <option value="OUTRO">{{ 'clinicaAdaptrojhApp.Convenio.OUTRO' | translate }}</option>
-                    </select>
-                    <div *ngIf="editForm.get('convenio')!.invalid && (editForm.get('convenio')!.dirty || editForm.get('convenio')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('convenio')?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.numCarteirinhaConvenio" for="field_numCarteirinhaConvenio">Num Carteirinha Convenio</label>
-                    <input type="text" class="form-control" name="numCarteirinhaConvenio" id="field_numCarteirinhaConvenio"
-                           formControlName="numCarteirinhaConvenio"/>
-                    <div *ngIf="editForm.get('numCarteirinhaConvenio')!.invalid && (editForm.get('numCarteirinhaConvenio')!.dirty || editForm.get('numCarteirinhaConvenio')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('numCarteirinhaConvenio')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 20 }">
-                        This field cannot be longer than 20 characters.
-                        </small>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.dataValidadeConvenio" for="field_dataValidadeConvenio">Data Validade Convenio</label>
-                    <div class="input-group">
-                        <input id="field_dataValidadeConvenio" type="text" class="form-control" name="dataValidadeConvenio" ngbDatepicker #dataValidadeConvenioDp="ngbDatepicker" formControlName="dataValidadeConvenio"/>
-                        <span class="input-group-append">
-                            <button type="button" class="btn btn-secondary" (click)="dataValidadeConvenioDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
-                        </span>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.procedencia" for="field_procedencia">Procedencia</label>
-                    <select class="form-control" name="procedencia" formControlName="procedencia" id="field_procedencia">
-                        <option value="ENCAMINHAMENTO_MEDICO">{{ 'clinicaAdaptrojhApp.Procedencia.ENCAMINHAMENTO_MEDICO' | translate }}</option>
-                        <option value="INDICACAO_PACIENTE">{{ 'clinicaAdaptrojhApp.Procedencia.INDICACAO_PACIENTE' | translate }}</option>
-                        <option value="INDICACAO_MEDICO">{{ 'clinicaAdaptrojhApp.Procedencia.INDICACAO_MEDICO' | translate }}</option>
-                        <option value="INTERNET">{{ 'clinicaAdaptrojhApp.Procedencia.INTERNET' | translate }}</option>
-                        <option value="OUTRO">{{ 'clinicaAdaptrojhApp.Procedencia.OUTRO' | translate }}</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
+                <div class="form-group col-md-6">
                     <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.profissao" for="field_profissao">Profissao</label>
                     <input type="text" class="form-control" name="profissao" id="field_profissao"
                            formControlName="profissao"/>
@@ -194,10 +178,55 @@
                         </small>
                     </div>
                 </div>
+                </div>
+                <!-- Escolaridade, Profissão End -->
 
-                <div class="form-group">
+                <!-- Convênio Begin -->
+                <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.convenio" for="field_convenio">Convenio</label><span class="required">*</span>
+                    <select class="form-control" name="convenio" formControlName="convenio" id="field_convenio">
+                        <option value="UNIMED_CE">{{ 'clinicaAdaptrojhApp.Convenio.UNIMED_CE' | translate }}</option>
+                        <option value="OUTRO">{{ 'clinicaAdaptrojhApp.Convenio.OUTRO' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('convenio')!.invalid && (editForm.get('convenio')!.dirty || editForm.get('convenio')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('convenio')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.numCarteirinhaConvenio" for="field_numCarteirinhaConvenio">Num Carteirinha Convenio</label>
+                    <input type="text" class="form-control" name="numCarteirinhaConvenio" id="field_numCarteirinhaConvenio"
+                           formControlName="numCarteirinhaConvenio"/>
+                    <div *ngIf="editForm.get('numCarteirinhaConvenio')!.invalid && (editForm.get('numCarteirinhaConvenio')!.dirty || editForm.get('numCarteirinhaConvenio')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('numCarteirinhaConvenio')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 20 }">
+                        This field cannot be longer than 20 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.dataValidadeConvenio" for="field_dataValidadeConvenio">Data Validade Convenio</label>
+                    <div class="input-group">
+                        <input id="field_dataValidadeConvenio" type="text" class="form-control" name="dataValidadeConvenio" ngbDatepicker #dataValidadeConvenioDp="ngbDatepicker" formControlName="dataValidadeConvenio"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dataValidadeConvenioDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                </div>
+                <!-- Fim convênio -->
+
+
+                <!-- CPF, RG Begin -->
+                <div class="form-row">
+                <div class="form-group col-md-6">
                     <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.cpf" for="field_cpf">Cpf</label>
-                    <input type="text" class="form-control" name="cpf" id="field_cpf"
+                    <input type="text" class="form-control" name="cpf" id="field_cpf" [textMask]="{mask: MASKS.cpf.textMask, showMask: false }" placeholder="000.000.000-00"
                            formControlName="cpf"/>
                     <div *ngIf="editForm.get('cpf')!.invalid && (editForm.get('cpf')!.dirty || editForm.get('cpf')!.touched)">
                         <small class="form-text text-danger"
@@ -211,9 +240,9 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group col-md-6">
                     <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.rg" for="field_rg">Rg</label>
-                    <input type="text" class="form-control" name="rg" id="field_rg"
+                    <input type="text" class="form-control" name="rg" id="field_rg" [textMask]="{mask: MASKS.rg.textMask}"
                            formControlName="rg"/>
                     <div *ngIf="editForm.get('rg')!.invalid && (editForm.get('rg')!.dirty || editForm.get('rg')!.touched)">
                         <small class="form-text text-danger"
@@ -222,10 +251,30 @@
                         </small>
                     </div>
                 </div>
+                </div>
+                <!-- CPF, RG End -->
 
-                <div class="form-group">
+                <!-- Contato Begin -->
+                <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.email" for="field_email">Email</label>
+                    <input type="text" class="form-control" name="email" id="field_email" [textMask]="{mask: emailMask}" placeholder="exemplo@dominio.com.br"
+                       formControlName="email" onchange="this.value = this.value.toLowerCase()"/>
+                    <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('email')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 120 }">
+                        This field cannot be longer than 120 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('email')?.errors?.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Email' }">
+                            This field should follow pattern for "Email".
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-3">
                     <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.telefone1" for="field_telefone1">Telefone 1</label>
-                    <input type="text" class="form-control" name="telefone1" id="field_telefone1"
+                    <input type="text" class="form-control" name="telefone1" id="field_telefone1" [textMask]="{mask: MASKS.telefone.textMask}"
                            formControlName="telefone1"/>
                     <div *ngIf="editForm.get('telefone1')!.invalid && (editForm.get('telefone1')!.dirty || editForm.get('telefone1')!.touched)">
                         <small class="form-text text-danger"
@@ -239,9 +288,9 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group col-md-3">
                     <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.telefone2" for="field_telefone2">Telefone 2</label>
-                    <input type="text" class="form-control" name="telefone2" id="field_telefone2"
+                    <input type="text" class="form-control" name="telefone2" id="field_telefone2" [textMask]="{mask: MASKS.telefone.textMask}"
                            formControlName="telefone2"/>
                     <div *ngIf="editForm.get('telefone2')!.invalid && (editForm.get('telefone2')!.dirty || editForm.get('telefone2')!.touched)">
                         <small class="form-text text-danger"
@@ -254,26 +303,14 @@
                         </small>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.email" for="field_email">Email</label>
-                    <input type="text" class="form-control" name="email" id="field_email"
-                           formControlName="email"/>
-                    <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('email')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 120 }">
-                        This field cannot be longer than 120 characters.
-                        </small>
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('email')?.errors?.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Email' }">
-                            This field should follow pattern for "Email".
-                        </small>
-                    </div>
                 </div>
+                <!-- Contato End -->
 
-                <div class="form-group">
+                <!-- Endereço row begin -->
+                <div class="form-row" >
+                <div class="form-group col-md-10">
                     <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.logradouroNome" for="field_logradouroNome">Logradouro Nome</label>
-                    <input type="text" class="form-control" name="logradouroNome" id="field_logradouroNome"
+                    <input type="text" class="form-control" name="logradouroNome" id="field_logradouroNome" oninput="this.value = this.value.toUpperCase()"
                            formControlName="logradouroNome"/>
                     <div *ngIf="editForm.get('logradouroNome')!.invalid && (editForm.get('logradouroNome')!.dirty || editForm.get('logradouroNome')!.touched)">
                         <small class="form-text text-danger"
@@ -287,7 +324,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group col-md-2">
                     <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.logradouroNumero" for="field_logradouroNumero">Logradouro Numero</label>
                     <input type="text" class="form-control" name="logradouroNumero" id="field_logradouroNumero"
                            formControlName="logradouroNumero"/>
@@ -298,10 +335,14 @@
                         </small>
                     </div>
                 </div>
+                </div>
+                <!-- Endereço row end -->
 
-                <div class="form-group">
+                <!-- Complemento bairro Endereço row begin-->
+                <div class="form-row" >
+                <div class="form-group col-md-6">
                     <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.logradouroComplemento" for="field_logradouroComplemento">Logradouro Complemento</label>
-                    <input type="text" class="form-control" name="logradouroComplemento" id="field_logradouroComplemento"
+                    <input type="text" class="form-control" name="logradouroComplemento" id="field_logradouroComplemento" oninput="this.value = this.value.toUpperCase()"
                            formControlName="logradouroComplemento"/>
                     <div *ngIf="editForm.get('logradouroComplemento')!.invalid && (editForm.get('logradouroComplemento')!.dirty || editForm.get('logradouroComplemento')!.touched)">
                         <small class="form-text text-danger"
@@ -311,9 +352,9 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group col-md-6">
                     <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.bairro" for="field_bairro">Bairro</label>
-                    <input type="text" class="form-control" name="bairro" id="field_bairro"
+                    <input type="text" class="form-control" name="bairro" id="field_bairro" oninput="this.value = this.value.toUpperCase()"
                            formControlName="bairro"/>
                     <div *ngIf="editForm.get('bairro')!.invalid && (editForm.get('bairro')!.dirty || editForm.get('bairro')!.touched)">
                         <small class="form-text text-danger"
@@ -326,26 +367,14 @@
                         </small>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.cep" for="field_cep">Cep</label>
-                    <input type="text" class="form-control" name="cep" id="field_cep"
-                           formControlName="cep"/>
-                    <div *ngIf="editForm.get('cep')!.invalid && (editForm.get('cep')!.dirty || editForm.get('cep')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('cep')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 9 }">
-                        This field cannot be longer than 9 characters.
-                        </small>
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('cep')?.errors?.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Cep' }">
-                            This field should follow pattern for "Cep".
-                        </small>
-                    </div>
                 </div>
+                <!-- Complemento bairro Endereço row end-->
 
-                <div class="form-group">
+                <!-- Complmente Cidade, Estado/CEP row begin-->
+                <div class="form-row">
+                <div class="form-group col-md-6">
                     <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.cidade" for="field_cidade">Cidade</label>
-                    <input type="text" class="form-control" name="cidade" id="field_cidade"
+                    <input type="text" class="form-control" name="cidade" id="field_cidade" oninput="this.value = this.value.toUpperCase()"
                            formControlName="cidade"/>
                     <div *ngIf="editForm.get('cidade')!.invalid && (editForm.get('cidade')!.dirty || editForm.get('cidade')!.touched)">
                         <small class="form-text text-danger"
@@ -359,7 +388,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group col-md-4">
                     <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.estado" for="field_estado">Estado</label>
                     <select class="form-control" name="estado" formControlName="estado" id="field_estado">
                         <option value="AC">{{ 'clinicaAdaptrojhApp.Estado.AC' | translate }}</option>
@@ -391,8 +420,35 @@
                         <option value="TO">{{ 'clinicaAdaptrojhApp.Estado.TO' | translate }}</option>
                     </select>
                 </div>
+                <div class="form-group col-md-2">
+                    <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.cep" for="field_cep">Cep</label>
+                    <input type="text" class="form-control" name="cep" id="field_cep" [textMask]="{mask: MASKS.cep.textMask}" placeholder="00.000-000"
+                           formControlName="cep"/>
+                    <div *ngIf="editForm.get('cep')!.invalid && (editForm.get('cep')!.dirty || editForm.get('cep')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('cep')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 8 }">
+                        This field cannot be longer than 9 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('cep')?.errors?.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Cep' }">
+                            This field should follow pattern for "Cep".
+                        </small>
+                    </div>
+                </div>
+                </div>
+                <!-- Complemento Cidade, Estado/CEP row End -->
+                
+                <!-- Responsável Begin -->
+                <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.responsavel" for="field_responsavel">Responsavel</label>
+                    <select class="form-control" id="field_responsavel" name="responsavel" formControlName="responsavel">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="clienteOption.id === editForm.get('responsavel')!.value?.id ? editForm.get('responsavel')!.value : clienteOption" *ngFor="let clienteOption of clientes; trackBy: trackById">{{ clienteOption.nomeCompleto }}</option>
+                    </select>
+                </div>
 
-                <div class="form-group">
+                <div class="form-group col-md-6">
                     <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.parentescoResponsavel" for="field_parentescoResponsavel">Parentesco Responsavel</label>
                     <select class="form-control" name="parentescoResponsavel" formControlName="parentescoResponsavel" id="field_parentescoResponsavel">
                         <option value="PAI">{{ 'clinicaAdaptrojhApp.TipoParentesco.PAI' | translate }}</option>
@@ -404,8 +460,21 @@
                         <option value="OUTURO">{{ 'clinicaAdaptrojhApp.TipoParentesco.OUTURO' | translate }}</option>
                     </select>
                 </div>
+                </div>
+                <!-- Responsável End -->
 
-                <div class="form-group">
+
+                <!-- Responsável Financeiro Begin -->
+                <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.responsavelFinanceiro" for="field_responsavelFinanceiro">Responsavel Financeiro</label>
+                    <select class="form-control" id="field_responsavelFinanceiro" name="responsavelFinanceiro" formControlName="responsavelFinanceiro">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="clienteOption.id === editForm.get('responsavelFinanceiro')!.value?.id ? editForm.get('responsavelFinanceiro')!.value : clienteOption" *ngFor="let clienteOption of clientes; trackBy: trackById">{{ clienteOption.nomeCompleto }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-6">
                     <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.parentescoResponsavelFinanceiro" for="field_parentescoResponsavelFinanceiro">Parentesco Responsavel Financeiro</label>
                     <select class="form-control" name="parentescoResponsavelFinanceiro" formControlName="parentescoResponsavelFinanceiro" id="field_parentescoResponsavelFinanceiro">
                         <option value="PAI">{{ 'clinicaAdaptrojhApp.TipoParentesco.PAI' | translate }}</option>
@@ -417,9 +486,11 @@
                         <option value="OUTURO">{{ 'clinicaAdaptrojhApp.TipoParentesco.OUTURO' | translate }}</option>
                     </select>
                 </div>
+                </div>
+                <!-- Responsável Financeiro Fim -->
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.dataHoraCadastro" for="field_dataHoraCadastro">Data Hora Cadastro</label>
+                    <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.dataHoraCadastro" for="field_dataHoraCadastro">Data Hora Cadastro</label><span class="required">*</span>
                     <div class="d-flex">
                         <input id="field_dataHoraCadastro" type="datetime-local" class="form-control" name="dataHoraCadastro" formControlName="dataHoraCadastro" placeholder="YYYY-MM-DD HH:mm"/>
                     </div>
@@ -435,39 +506,20 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.ativo" for="field_ativo">Ativo</label>
-                    <input type="checkbox" class="form-control" name="ativo" id="field_ativo"
-                           formControlName="ativo"/>
-                </div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.observacao" for="field_observacao">Observacao</label>
-                    <input type="text" class="form-control" name="observacao" id="field_observacao"
-                           formControlName="observacao"/>
-                    <div *ngIf="editForm.get('observacao')!.invalid && (editForm.get('observacao')!.dirty || editForm.get('observacao')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('observacao')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 1000 }">
-                        This field cannot be longer than 1000 characters.
-                        </small>
-                    </div>
-                </div>
+                <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.observacao" for="field_observacao">Observacao</label>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.responsavel" for="field_responsavel">Responsavel</label>
-                    <select class="form-control" id="field_responsavel" name="responsavel" formControlName="responsavel">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="clienteOption.id === editForm.get('responsavel')!.value?.id ? editForm.get('responsavel')!.value : clienteOption" *ngFor="let clienteOption of clientes; trackBy: trackById">{{ clienteOption.nomeCompleto }}</option>
-                    </select>
-                </div>
+                <textarea id="field_observacao" formControlName="observacao" class="form-control" name="observacao" rows="8"
+                    [(ngModel)]="observacao" [maxlength]="1000" placeholder="Se precisar complementar, digite aqui. Capacidade de 1000 caracteres...">
+                </textarea>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.cliente.responsavelFinanceiro" for="field_responsavelFinanceiro">Responsavel Financeiro</label>
-                    <select class="form-control" id="field_responsavelFinanceiro" name="responsavelFinanceiro" formControlName="responsavelFinanceiro">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="clienteOption.id === editForm.get('responsavelFinanceiro')!.value?.id ? editForm.get('responsavelFinanceiro')!.value : clienteOption" *ngFor="let clienteOption of clientes; trackBy: trackById">{{ clienteOption.nomeCompleto }}</option>
-                    </select>
-                </div>
+                <label class="nopadding clrlbl"> Caracteres restantes: {{observacao.length}}/{{1000}}</label>
+
+                <br>
+                <br>
+
+
+
             </div>
 
             <div>
