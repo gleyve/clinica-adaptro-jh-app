@@ -144,5 +144,5 @@
       "not.image": "File was expected to be an image but was found to be \"{{ fileType }}\""
     }
   },
-  "footer": "Este é o rodapé da página"
+  "footer": "Sistema de Gestão - Clínica ADAPTRO"
 }

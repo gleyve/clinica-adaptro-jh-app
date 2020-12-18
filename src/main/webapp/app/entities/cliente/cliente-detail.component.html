@@ -24,14 +24,14 @@
                 <dd>
                     <div *ngIf="cliente.foto">
                         <a (click)="openFile(cliente.fotoContentType, cliente.foto)">
-                            <img [src]="'data:' + cliente.fotoContentType + ';base64,' + cliente.foto" style="max-width: 100%;" alt="cliente image"/>
+                            <img [src]="'data:' + cliente.fotoContentType + ';base64,' + cliente.foto" style="max-width: 20%;" alt="cliente image"/>
                         </a>
                         {{ cliente.fotoContentType }}, {{ byteSize(cliente.foto) }}
                     </div>
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.dataNascimento">Data Nascimento</span></dt>
                 <dd>
-                    <span>{{ cliente.dataNascimento }}</span>
+                    <span>{{ cliente.dataNascimento | date: 'dd/MM/yyyy' }}</span>
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.sexo">Sexo</span></dt>
                 <dd>
@@ -55,7 +55,7 @@
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.dataValidadeConvenio">Data Validade Convenio</span></dt>
                 <dd>
-                    <span>{{ cliente.dataValidadeConvenio }}</span>
+                    <span>{{ cliente.dataValidadeConvenio | date: 'dd/MM/yyyy'}}</span>
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.procedencia">Procedencia</span></dt>
                 <dd>
@@ -67,7 +67,7 @@
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.cpf">Cpf</span></dt>
                 <dd>
-                    <span>{{ cliente.cpf }}</span>
+                    <span>{{ cliente.cpf | cpf }}</span>
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.rg">Rg</span></dt>
                 <dd>
@@ -75,15 +75,15 @@
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.telefone1">Telefone 1</span></dt>
                 <dd>
-                    <span>{{ cliente.telefone1 }}</span>
+                    <span>{{ cliente.telefone1 | telefone }}</span>
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.telefone2">Telefone 2</span></dt>
                 <dd>
-                    <span>{{ cliente.telefone2 }}</span>
+                    <span>{{ cliente.telefone2 | telefone }}</span>
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.email">Email</span></dt>
                 <dd>
-                    <span>{{ cliente.email }}</span>
+                    <span>{{ cliente.email! | lowercase }}</span>
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.logradouroNome">Logradouro Nome</span></dt>
                 <dd>
@@ -103,7 +103,7 @@
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.cep">Cep</span></dt>
                 <dd>
-                    <span>{{ cliente.cep }}</span>
+                    <span>{{ cliente.cep | cep }}</span>
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.cidade">Cidade</span></dt>
                 <dd>
@@ -123,7 +123,7 @@
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.dataHoraCadastro">Data Hora Cadastro</span></dt>
                 <dd>
-                    <span>{{ cliente.dataHoraCadastro }}</span>
+                    <span>{{ cliente.dataHoraCadastro | date: 'dd/MM/yyyy, h:mm a' }}</span>
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.cliente.ativo">Ativo</span></dt>
                 <dd>

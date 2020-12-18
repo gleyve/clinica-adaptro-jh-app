@@ -42,10 +42,10 @@
                 </div>
             </div>
 
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-3" *ngIf="editForm.get('tipoPessoa')!.value === 'J'">
                 <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.fornecedor.numeroCNPJ" for="field_numeroCNPJ">Numero CNPJ</label>
                 <input type="text" class="form-control" name="numeroCNPJ" id="field_numeroCNPJ" [textMask]="{mask: MASKS.cnpj.textMask}" 
-                       placeholder="99.999.999/9999-99"
+                       placeholder="99.999.999/9999-99" [readonly]="editForm.get('tipoPessoa')!.value === 'F'"
                        formControlName="numeroCNPJ"/>
                        <span>{{ myModel}}</span>
                 <div *ngIf="editForm.get('numeroCNPJ')!.invalid && (editForm.get('numeroCNPJ')!.dirty || editForm.get('numeroCNPJ')!.touched)">
@@ -60,7 +60,7 @@
                 </div>
             </div>
 
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-4" *ngIf="editForm.get('tipoPessoa')!.value === 'J'">
                 <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.fornecedor.numeroInscricaoEstadual" for="field_numeroInscricaoEstadual">Numero Inscricao Estadual</label>
                 <input type="text" class="form-control" name="numeroInscricaoEstadual" id="field_numeroInscricaoEstadual"
                        formControlName="numeroInscricaoEstadual"/>
@@ -93,7 +93,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" *ngIf="editForm.get('tipoPessoa')!.value === 'J'">
                 <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.fornecedor.nomeFantasia" for="field_nomeFantasia">Nome Fantasia</label>
                 <input type="text" class="form-control" name="nomeFantasia" id="field_nomeFantasia" oninput="this.value = this.value.toUpperCase()"
                        formControlName="nomeFantasia"/>
@@ -110,7 +110,7 @@
             <div class="form-group col-md-6">
                 <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.fornecedor.email" for="field_email">Email</label>
                 <input type="text" class="form-control" name="email" id="field_email"  [textMask]="{mask: emailMask}" placeholder="exemplo@dominio.com.br"
-                       formControlName="email" oninput="this.value = this.value.toUpperCase()"/>
+                       formControlName="email" />
                 <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
                     <small class="form-text text-danger"
                            *ngIf="editForm.get('email')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 120 }">

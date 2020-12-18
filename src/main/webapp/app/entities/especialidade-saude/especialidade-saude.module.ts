@@ -7,6 +7,7 @@ import { EspecialidadeSaudeDetailComponent } from './especialidade-saude-detail.
 import { EspecialidadeSaudeUpdateComponent } from './especialidade-saude-update.component';
 import { EspecialidadeSaudeDeleteDialogComponent } from './especialidade-saude-delete-dialog.component';
 import { especialidadeSaudeRoute } from './especialidade-saude.route';
+import { MyAdaptroUtilsService } from 'app/shared/util/my-adaptro-util.service';
 
 @NgModule({
   imports: [ClinicaAdaptrojhAppSharedModule, RouterModule.forChild(especialidadeSaudeRoute)],
@@ -17,5 +18,6 @@ import { especialidadeSaudeRoute } from './especialidade-saude.route';
     EspecialidadeSaudeDeleteDialogComponent,
   ],
   entryComponents: [EspecialidadeSaudeDeleteDialogComponent],
+  providers: [MyAdaptroUtilsService],
 })
 export class ClinicaAdaptrojhAppEspecialidadeSaudeModule {}

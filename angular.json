@@ -31,6 +31,7 @@
   },
   "defaultProject": "clinica-adaptrojh-app",
   "cli": {
-    "packageManager": "npm"
+    "packageManager": "npm",
+    "analytics": false
   }
 }

@@ -9,12 +9,14 @@ import { IEspecialidadeSaude } from 'app/shared/model/especialidade-saude.model'
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { EspecialidadeSaudeService } from './especialidade-saude.service';
 import { EspecialidadeSaudeDeleteDialogComponent } from './especialidade-saude-delete-dialog.component';
+//import { MyAdaptroUtilsService } from 'app/shared/util/my-adaptro-util.service';
 
 @Component({
   selector: 'jhi-especialidade-saude',
   templateUrl: './especialidade-saude.component.html',
 })
 export class EspecialidadeSaudeComponent implements OnInit, OnDestroy {
+  //static myAdaptroUtilsService: MyAdaptroUtilsService;
   especialidadeSaudes: IEspecialidadeSaude[];
   eventSubscriber?: Subscription;
   itemsPerPage: number;
@@ -101,5 +103,11 @@ export class EspecialidadeSaudeComponent implements OnInit, OnDestroy {
         this.especialidadeSaudes.push(data[i]);
       }
     }
+  }
+
+  public getEntityStatus(status: boolean): string {
+    if (status) {
+      return 'Ativo';
+    } else return 'Inativo';
   }
 }

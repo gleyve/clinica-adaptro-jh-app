@@ -9,6 +9,7 @@ import { IFornecedor, Fornecedor } from 'app/shared/model/fornecedor.model';
 import { FornecedorService } from './fornecedor.service';
 import { MASKS, NgBrazilValidators } from 'ng-brazil';
 import emailMask from 'text-mask-addons/dist/emailMask';
+import { AdaptroUtilsService } from 'app/adaptro-utils.service.ts';
 
 @Component({
   selector: 'jhi-fornecedor-update',
@@ -75,7 +76,12 @@ export class FornecedorUpdateComponent implements OnInit {
     observacao: [null, [Validators.maxLength(1000)]],
   });
 
-  constructor(protected fornecedorService: FornecedorService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
+  constructor(
+    protected fornecedorService: FornecedorService,
+    protected activatedRoute: ActivatedRoute,
+    private fb: FormBuilder,
+    private adaptroUtilsService: AdaptroUtilsService
+  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ fornecedor }) => {
@@ -125,34 +131,23 @@ export class FornecedorUpdateComponent implements OnInit {
       ...new Fornecedor(),
       id: this.editForm.get(['id'])!.value,
       tipoPessoa: this.editForm.get(['tipoPessoa'])!.value,
-      numeroCPF: this.cleanupMask(this.editForm.get(['numeroCPF'])!.value),
-      numeroCNPJ: this.cleanupMask(this.editForm.get(['numeroCNPJ'])!.value),
+      numeroCPF: this.adaptroUtilsService.cleanupMask(this.editForm.get(['numeroCPF'])!.value),
+      numeroCNPJ: this.adaptroUtilsService.cleanupMask(this.editForm.get(['numeroCNPJ'])!.value),
       numeroInscricaoEstadual: this.editForm.get(['numeroInscricaoEstadual'])!.value,
       nome: this.editForm.get(['nome'])!.value,
       nomeFantasia: this.editForm.get(['nomeFantasia'])!.value,
       email: this.editForm.get(['email'])!.value,
-      telefone1: this.cleanupMask(this.editForm.get(['telefone1'])!.value),
-      telefone2: this.cleanupMask(this.editForm.get(['telefone2'])!.value),
+      telefone1: this.adaptroUtilsService.cleanupMask(this.editForm.get(['telefone1'])!.value),
+      telefone2: this.adaptroUtilsService.cleanupMask(this.editForm.get(['telefone2'])!.value),
       logradouroNome: this.editForm.get(['logradouroNome'])!.value,
       logradouroNumero: this.editForm.get(['logradouroNumero'])!.value,
       logradouroComplemento: this.editForm.get(['logradouroComplemento'])!.value,
       bairro: this.editForm.get(['bairro'])!.value,
-      cep: this.cleanupMask(this.editForm.get(['cep'])!.value),
+      cep: this.adaptroUtilsService.cleanupMask(this.editForm.get(['cep'])!.value),
       cidade: this.editForm.get(['cidade'])!.value,
       estado: this.editForm.get(['estado'])!.value,
       observacao: this.editForm.get(['observacao'])!.value,
     };
-  }
-
-  mostraValor(): void {
-    const vlr = this.editForm.get(['cep'])!.value;
-    if (vlr == null) {
-      alert('Valor null = ' + vlr);
-    } else if (vlr === undefined) {
-      alert('undefined = ' + vlr);
-    } else if (vlr === '') {
-      alert('Valor em Branco = ' + vlr);
-    } else alert('valor = ' + vlr);
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IFornecedor>>): void {
@@ -169,11 +164,5 @@ export class FornecedorUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
-  }
-
-  cleanupMask(strMaskedData: any): any {
-    if (strMaskedData === null || strMaskedData === '' || strMaskedData === undefined) {
-      return (strMaskedData = undefined);
-    } else return strMaskedData.replace(/\D+/g, '');
   }
 }

@@ -5,12 +5,13 @@ import { Subscription, combineLatest } from 'rxjs';
 import { JhiEventManager, JhiDataUtils } from 'ng-jhipster';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { ICliente } from 'app/shared/model/cliente.model';
+import { ICliente, Cliente } from 'app/shared/model/cliente.model';
 
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { ClienteService } from './cliente.service';
 import { ClienteDeleteDialogComponent } from './cliente-delete-dialog.component';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
+import { AdaptroUtilsService } from 'app/adaptro-utils.service.ts';
 
 @Component({
   selector: 'jhi-cliente',
@@ -34,7 +35,8 @@ export class ClienteComponent implements OnInit, OnDestroy {
     protected dataUtils: JhiDataUtils,
     protected router: Router,
     protected eventManager: JhiEventManager,
-    protected modalService: NgbModal
+    protected modalService: NgbModal,
+    public adaptroUtilsService: AdaptroUtilsService
   ) {}
 
   search(): void {

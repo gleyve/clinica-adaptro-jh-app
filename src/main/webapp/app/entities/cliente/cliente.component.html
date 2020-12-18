@@ -21,7 +21,6 @@
                         <label class="form-check-label" for="inlineRadio2">RG</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" formControlName="searchParamRadio" name="searchParamRadio" id="email" value="email">
                         <label class="form-check-label" for="inlineRadio2">E-mail</label>
                     </div>
 
@@ -71,15 +70,15 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="tipoCliente"><span jhiTranslate="clinicaAdaptrojhApp.cliente.tipoCliente">Tipo Cliente</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="nomeCompleto"><span jhiTranslate="clinicaAdaptrojhApp.cliente.nomeCompleto">Nome Completo</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="foto"><span jhiTranslate="clinicaAdaptrojhApp.cliente.foto">Foto</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th class="text-center" scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th class="text-center" scope="col"  jhiSortBy="tipoCliente"><span jhiTranslate="clinicaAdaptrojhApp.cliente.tipoCliente">Tipo Cliente</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th class="text-center" scope="col"  jhiSortBy="nomeCompleto"><span jhiTranslate="clinicaAdaptrojhApp.cliente.nomeCompleto">Nome Completo</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th class="text-center" scope="col"  jhiSortBy="foto"><span jhiTranslate="clinicaAdaptrojhApp.cliente.foto">Foto</span> <fa-icon icon="sort"></fa-icon></th>
 
-                    <th scope="col"  jhiSortBy="convenio"><span jhiTranslate="clinicaAdaptrojhApp.cliente.convenio">Convenio</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="telefone1"><span jhiTranslate="clinicaAdaptrojhApp.cliente.telefone1">Telefone 1</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="email"><span jhiTranslate="clinicaAdaptrojhApp.cliente.email">Email</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="email"><span jhiTranslate="clinicaAdaptrojhApp.cliente.ativo">Ativo</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th class="text-center" scope="col"  jhiSortBy="convenio"><span jhiTranslate="clinicaAdaptrojhApp.cliente.convenio">Convenio</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th class="text-center" scope="col"  jhiSortBy="telefone1"><span jhiTranslate="clinicaAdaptrojhApp.cliente.telefone1">Telefone 1</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th class="text-center" scope="col"  jhiSortBy="email"><span jhiTranslate="clinicaAdaptrojhApp.cliente.email">Email</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th class="text-center" scope="col"  jhiSortBy="ativo"><span jhiTranslate="clinicaAdaptrojhApp.cliente.ativo">Ativo</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
 
                 </tr>
@@ -97,8 +96,8 @@
                     <!-- <td jhiTranslate="{{ 'clinicaAdaptrojhApp.Convenio.' + cliente.convenio }}">{{ cliente.convenio }} </td> -->
                     <td class="align-middle text-center">{{ cliente.convenio }} <br>{{ cliente.numCarteirinhaConvenio }} </td>
                     <td class="align-middle text-center">{{ cliente.telefone1 | telefone }} <br> {{ cliente.telefone2 | telefone }}</td>
-                    <td class="align-middle text-center">{{ cliente.email }}</td>
-                    <td *ngIf="cliente.ativo">Sim</td> <td *ngIf="!cliente.ativo">Não</td>
+                    <td class="align-middle text-center">{{ cliente.email! | lowercase }}</td>
+                    <td [style.color]="!cliente.ativo ? 'red' : 'green'" class="align-middle text-center"> {{  this.adaptroUtilsService.getEntityStatus(cliente.ativo!) }} </td>
 
                     <td class="text-right">
                         <div class="btn-group">

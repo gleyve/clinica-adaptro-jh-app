@@ -34,7 +34,7 @@
                     <td><a [routerLink]="['/especialidade-saude', especialidadeSaude.id, 'view']">{{ especialidadeSaude.id }}</a></td>
                     <td>{{ especialidadeSaude.descricao }}</td>
                     <td>{{ especialidadeSaude.sigla }}</td>
-                    <td *ngIf="especialidadeSaude.ativo">Sim</td> <td *ngIf="!especialidadeSaude.ativo">Não</td>
+                    <td> {{ getEntityStatus(especialidadeSaude.ativo!) }}</td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"

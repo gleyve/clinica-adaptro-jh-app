@@ -92,10 +92,10 @@
 
                     <!--Tipo Pessoa: CPF ou CNPJ-->
                     <td class="align-middle text-center" *ngIf="fornecedor.tipoPessoa!.toString() === 'F'">{{ fornecedor.numeroCPF | cpf }} {{ fornecedor.numeroCNPJ | cnpj }}</td>
-                    <td class="align-middle text-center"  *ngIf="fornecedor.tipoPessoa!.toString() === 'J'">{{ fornecedor.numeroCNPJ | cnpj }} <br> {{ fornecedor.numeroCPF | cpf }}</td>
+                    <td class="align-middle text-center" *ngIf="fornecedor.tipoPessoa!.toString() === 'J'">{{ fornecedor.numeroCNPJ | cnpj }} <br> {{ fornecedor.numeroCPF | cpf }}</td>
 
                     <td class="align-middle text-center">{{ fornecedor.telefone1 | telefone }} <br> {{ fornecedor.telefone2 | telefone }}</td>
-                    <td class="align-middle text-center">{{ fornecedor.email }}</td>
+                    <td class="align-middle text-center">{{ fornecedor.email! | lowercase }}</td>
                     <td class="align-middle" jhiTranslate="{{ 'clinicaAdaptrojhApp.Estado2.' + fornecedor.estado }}">{{ fornecedor.estado }}</td>
                     <td class="text-right">
                         <div class="btn-group">

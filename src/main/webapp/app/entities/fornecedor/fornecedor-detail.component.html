@@ -14,11 +14,11 @@
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.numeroCPF">Numero CPF</span></dt>
                 <dd>
-                    <span>{{ fornecedor.numeroCPF }}</span>
+                    <span>{{ fornecedor.numeroCPF | cpf}}</span>
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.numeroCNPJ">Numero CNPJ</span></dt>
                 <dd>
-                    <span>{{ fornecedor.numeroCNPJ }}</span>
+                    <span>{{ fornecedor.numeroCNPJ | cnpj }}</span>
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.numeroInscricaoEstadual">Numero Inscricao Estadual</span></dt>
                 <dd>
@@ -34,15 +34,15 @@
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.email">Email</span></dt>
                 <dd>
-                    <span>{{ fornecedor.email }}</span>
+                    <span>{{ fornecedor.email! | lowercase }}</span>
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.telefone1">Telefone 1</span></dt>
                 <dd>
-                    <span>{{ fornecedor.telefone1 }}</span>
+                    <span>{{ fornecedor.telefone1 | telefone }}</span>
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.telefone2">Telefone 2</span></dt>
                 <dd>
-                    <span>{{ fornecedor.telefone2 }}</span>
+                    <span>{{ fornecedor.telefone2 | telefone }}</span>
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.logradouroNome">Logradouro Nome</span></dt>
                 <dd>
@@ -62,7 +62,7 @@
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.cep">Cep</span></dt>
                 <dd>
-                    <span>{{ fornecedor.cep }}</span>
+                    <span>{{ fornecedor.cep | cep }}</span>
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.fornecedor.cidade">Cidade</span></dt>
                 <dd>

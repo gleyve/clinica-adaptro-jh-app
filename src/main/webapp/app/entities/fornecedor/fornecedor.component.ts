@@ -12,6 +12,8 @@ import { FornecedorService } from './fornecedor.service';
 import { FornecedorDeleteDialogComponent } from './fornecedor-delete-dialog.component';
 import { TipoPessoa } from 'app/shared/model/enumerations/tipo-pessoa.model';
 
+//import { AdaptroUtilsService } from 'app/adaptro-utils.service.ts';
+
 @Component({
   selector: 'jhi-fornecedor',
   templateUrl: './fornecedor.component.html',
@@ -34,7 +36,8 @@ export class FornecedorComponent implements OnInit, OnDestroy {
     protected router: Router,
     protected eventManager: JhiEventManager,
     protected modalService: NgbModal
-  ) {}
+  ) //protected adaptroUtils: AdaptroUtils,
+  {}
 
   search(): void {
     //this.myQueryObject = this.buildCurrentSearch2(1);
@@ -60,7 +63,7 @@ export class FornecedorComponent implements OnInit, OnDestroy {
   private initSearchForm(): void {
     this.searchForm = new FormGroup({
       email: new FormControl(null, Validators.required),
-      valorBusca: new FormControl(null, Validators.required),
+      valorBusca: new FormControl(null, [Validators.required, Validators.minLength(4)]),
       searchParamRadio: new FormControl('nome', Validators.required),
     });
   }
