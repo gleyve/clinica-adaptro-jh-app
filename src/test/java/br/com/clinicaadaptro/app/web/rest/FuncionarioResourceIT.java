@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Base64Utils;
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
@@ -86,9 +87,9 @@ public class FuncionarioResourceIT {
     private static final LocalDate UPDATED_DATA_DESLIGAMENTO = LocalDate.now(ZoneId.systemDefault());
     private static final LocalDate SMALLER_DATA_DESLIGAMENTO = LocalDate.ofEpochDay(-1L);
 
-    private static final Long DEFAULT_SALARIO = 1L;
-    private static final Long UPDATED_SALARIO = 2L;
-    private static final Long SMALLER_SALARIO = 1L - 1L;
+    private static final BigDecimal DEFAULT_SALARIO = new BigDecimal(1L);
+    private static final BigDecimal UPDATED_SALARIO = new BigDecimal(2L);
+    private static final BigDecimal SMALLER_SALARIO = new BigDecimal(1L);
 
     private static final Sexo DEFAULT_SEXO = Sexo.M;
     private static final Sexo UPDATED_SEXO = Sexo.F;

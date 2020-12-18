@@ -1,25 +1,39 @@
 package br.com.clinicaadaptro.app.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 
-import br.com.clinicaadaptro.app.domain.enumeration.Sexo;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
-import br.com.clinicaadaptro.app.domain.enumeration.EstadoCivil;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import br.com.clinicaadaptro.app.domain.enumeration.Escolaridade;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import br.com.clinicaadaptro.app.domain.enumeration.CategoriaFuncionario;
-
+import br.com.clinicaadaptro.app.domain.enumeration.Escolaridade;
 import br.com.clinicaadaptro.app.domain.enumeration.Estado;
+import br.com.clinicaadaptro.app.domain.enumeration.EstadoCivil;
+import br.com.clinicaadaptro.app.domain.enumeration.Sexo;
 
 /**
  * A Funcionario.
@@ -90,7 +104,7 @@ public class Funcionario implements Serializable {
     private LocalDate dataDesligamento;
 
     @Column(name = "salario")
-    private Long salario;
+    private BigDecimal salario;
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -348,16 +362,16 @@ public class Funcionario implements Serializable {
         this.dataDesligamento = dataDesligamento;
     }
 
-    public Long getSalario() {
+    public BigDecimal getSalario() {
         return salario;
     }
 
-    public Funcionario salario(Long salario) {
+    public Funcionario salario(BigDecimal salario) {
         this.salario = salario;
         return this;
     }
 
-    public void setSalario(Long salario) {
+    public void setSalario(BigDecimal salario) {
         this.salario = salario;
     }
 

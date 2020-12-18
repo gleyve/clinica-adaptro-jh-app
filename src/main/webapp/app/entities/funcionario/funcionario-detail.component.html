@@ -23,7 +23,7 @@
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.dataNascimento">Data Nascimento</span></dt>
                 <dd>
-                    <span>{{ funcionario.dataNascimento }}</span>
+                    <span>{{ funcionario.dataNascimento | date:'dd/MM/yyyy' }}</span>
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.numeroConselhoProfissional">Numero Conselho Profissional</span></dt>
                 <dd>
@@ -31,11 +31,11 @@
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.cpf">Cpf</span></dt>
                 <dd>
-                    <span>{{ funcionario.cpf }}</span>
+                    <span>{{ funcionario.cpf | cpf}}</span>
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.rg">Rg</span></dt>
                 <dd>
-                    <span>{{ funcionario.rg }}</span>
+                    <span>{{ funcionario.rg | rg }}</span>
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.cnh">Cnh</span></dt>
                 <dd>
@@ -43,27 +43,27 @@
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.telefone1">Telefone 1</span></dt>
                 <dd>
-                    <span>{{ funcionario.telefone1 }}</span>
+                    <span>{{ funcionario.telefone1 | telefone }}</span>
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.telefone2">Telefone 2</span></dt>
                 <dd>
-                    <span>{{ funcionario.telefone2 }}</span>
+                    <span>{{ funcionario.telefone2 | telefone }}</span>
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.email">Email</span></dt>
                 <dd>
-                    <span>{{ funcionario.email }}</span>
+                    <span>{{ funcionario.email! | lowercase }}</span>
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.dataAdmissao">Data Admissao</span></dt>
                 <dd>
-                    <span>{{ funcionario.dataAdmissao }}</span>
+                    <span>{{ funcionario.dataAdmissao | date:'dd/MM/yyyy' }}</span>
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.dataDesligamento">Data Desligamento</span></dt>
                 <dd>
-                    <span>{{ funcionario.dataDesligamento }}</span>
+                    <span>{{ funcionario.dataDesligamento | date:'dd/MM/yyyy' }}</span>
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.salario">Salario</span></dt>
                 <dd>
-                    <span>{{ funcionario.salario }}</span>
+                    <span>{{ funcionario.salario | currencyBrazil }} </span>
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.sexo">Sexo</span></dt>
                 <dd>
@@ -107,7 +107,7 @@
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.cep">Cep</span></dt>
                 <dd>
-                    <span>{{ funcionario.cep }}</span>
+                    <span>{{ funcionario.cep | cep }}</span>
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.cidade">Cidade</span></dt>
                 <dd>
@@ -119,7 +119,7 @@
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.dataHoraCadastro">Data Hora Cadastro</span></dt>
                 <dd>
-                    <span>{{ funcionario.dataHoraCadastro }}</span>
+                    <span>{{ funcionario.dataHoraCadastro | date: 'dd/MM/yyyy, h:mm a' }}</span>
                 </dd>
                 <dt><span jhiTranslate="clinicaAdaptrojhApp.funcionario.observacao">Observacao</span></dt>
                 <dd>

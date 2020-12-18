@@ -22,12 +22,12 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="nomeCompleto"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.nomeCompleto">Nome Completo</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="telefone1"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.telefone1">Telefone 1</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="funcao"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.funcao">Funcao</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="especialidadeSaude.descricao"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.especialidadeSaude">Especialidade Saude</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="user.login"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.user">User</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th class="align-middle text-center" scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th class="align-middle text-center" scope="col"  jhiSortBy="nomeCompleto"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.nomeCompleto">Nome Completo</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th class="align-middle text-center" scope="col"  jhiSortBy="telefone1"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.telefone1">Telefone 1</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th class="align-middle text-center" scope="col"  jhiSortBy="funcao"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.funcao">Funcao</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th class="align-middle text-center" scope="col"  jhiSortBy="especialidadeSaude.descricao"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.especialidadeSaude">Especialidade Saude</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th class="align-middle text-center" scope="col"  jhiSortBy="user.login"><span jhiTranslate="clinicaAdaptrojhApp.funcionario.user">User</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>

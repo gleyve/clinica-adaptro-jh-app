@@ -301,8 +301,9 @@
 
                 <div class="form-group col-md-6">
                     <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.funcionario.salario" for="field_salario">Salario</label>
-                    <input type="number" class="form-control" name="salario" id="field_salario"
-                           formControlName="salario"/>
+                    <input type="text" class="form-control" name="salario" id="field_salario" [textMask]="{mask: currencyMask}"
+                           formControlName="salario"/> 
+                           
                 </div>
                 </div>
                 <!-- Escolaridade, salário End -->
@@ -437,8 +438,8 @@
 
                 <div class="form-group col-md-2">
                     <label class="form-control-label" jhiTranslate="clinicaAdaptrojhApp.funcionario.cep" for="field_cep">Cep</label>
-                    <input type="text" class="form-control" name="cep" id="field_cep" [textMask]="{mask: MASKS.telefone.textMask}" placeholder="00.000-000"
-                           formControlName="cep"/>
+                    <input type="text" class="form-control" name="cep" id="field_cep" [textMask]="{mask: MASKS.cep.textMask}" placeholder="00.000-000"
+                           formControlName="cep"/> 
                     <div *ngIf="editForm.get('cep')!.invalid && (editForm.get('cep')!.dirty || editForm.get('cep')!.touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('cep')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 8 }">

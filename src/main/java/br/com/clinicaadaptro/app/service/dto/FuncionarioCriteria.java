@@ -8,6 +8,7 @@ import br.com.clinicaadaptro.app.domain.enumeration.EstadoCivil;
 import br.com.clinicaadaptro.app.domain.enumeration.Escolaridade;
 import br.com.clinicaadaptro.app.domain.enumeration.CategoriaFuncionario;
 import br.com.clinicaadaptro.app.domain.enumeration.Estado;
+import io.github.jhipster.service.filter.BigDecimalFilter;
 import io.github.jhipster.service.filter.BooleanFilter;
 import io.github.jhipster.service.filter.DoubleFilter;
 import io.github.jhipster.service.filter.Filter;
@@ -145,7 +146,7 @@ public class FuncionarioCriteria implements Serializable, Criteria {
 
     private LocalDateFilter dataDesligamento;
 
-    private LongFilter salario;
+    private BigDecimalFilter salario;
 
     private SexoFilter sexo;
 
@@ -318,11 +319,11 @@ public class FuncionarioCriteria implements Serializable, Criteria {
         this.dataDesligamento = dataDesligamento;
     }
 
-    public LongFilter getSalario() {
+    public BigDecimalFilter getSalario() {
         return salario;
     }
 
-    public void setSalario(LongFilter salario) {
+    public void setSalario(BigDecimalFilter salario) {
         this.salario = salario;
     }
 

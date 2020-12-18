@@ -17,8 +17,28 @@ import { IEspecialidadeSaude } from 'app/shared/model/especialidade-saude.model'
 import { EspecialidadeSaudeService } from 'app/entities/especialidade-saude/especialidade-saude.service';
 import { MASKS, NgBrazilValidators } from 'ng-brazil';
 import emailMask from 'text-mask-addons/dist/emailMask';
+import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 
 type SelectableEntity = IUser | IEspecialidadeSaude;
+
+const currencyMask = {
+  prefix: 'R$ ',
+  thousandsSeparatorSymbol: '.',
+  decimalSymbol: ',',
+  includeThousandsSeparator: true,
+  allowDecimal: true,
+  decimalLimit: 2,
+  requireDecimal: true,
+  allowNegative: false,
+  allowLeadingZeroes: true,
+  integerLimit: 8,
+};
+
+const currencyFormatter = new Intl.NumberFormat('pt-BR', {
+  style: 'currency',
+  currency: 'BRL',
+  minimumFractionDigits: 2,
+});
 
 @Component({
   selector: 'jhi-funcionario-update',
@@ -34,7 +54,28 @@ export class FuncionarioUpdateComponent implements OnInit {
 
   public MASKS = MASKS;
   emailMask = emailMask;
+
   public observacao = '';
+
+  /*   readonly priceMask = {
+    mask: createNumberMask({
+      allowDecimal: true,
+      decimalSymbol: ',',
+      integerLimit: 7,
+      prefix: 'R$ ',
+      thousandsSeparatorSymbol: '.'
+    })
+  }; */
+
+  currencyMask = createNumberMask({
+    ...currencyMask,
+    /*     prefix: 'R$ ',
+    postfix: '',
+    allowDecimal: true,
+    integerLimit: 3,
+    maxValue: 10000,
+    minValue: 0 */
+  });
 
   editForm = this.fb.group({
     id: [],
@@ -117,7 +158,7 @@ export class FuncionarioUpdateComponent implements OnInit {
       email: funcionario.email,
       dataAdmissao: funcionario.dataAdmissao,
       dataDesligamento: funcionario.dataDesligamento,
-      salario: funcionario.salario,
+      salario: currencyFormatter.format(funcionario.salario!),
       sexo: funcionario.sexo,
       estadoCivil: funcionario.estadoCivil,
       escolaridade: funcionario.escolaridade,
@@ -197,7 +238,7 @@ export class FuncionarioUpdateComponent implements OnInit {
       email: this.editForm.get(['email'])!.value,
       dataAdmissao: this.editForm.get(['dataAdmissao'])!.value,
       dataDesligamento: this.editForm.get(['dataDesligamento'])!.value,
-      salario: this.editForm.get(['salario'])!.value,
+      salario: this.cleanupCurrencyMask(this.editForm.get(['salario'])!.value),
       sexo: this.editForm.get(['sexo'])!.value,
       estadoCivil: this.editForm.get(['estadoCivil'])!.value,
       escolaridade: this.editForm.get(['escolaridade'])!.value,
@@ -247,4 +288,16 @@ export class FuncionarioUpdateComponent implements OnInit {
       return (strMaskedData = undefined);
     } else return strMaskedData.replace(/\D+/g, '');
   }
+
+  cleanupCurrencyMask(strMaskedData: any): any {
+    if (strMaskedData === null || strMaskedData === '' || strMaskedData === undefined) {
+      return (strMaskedData = undefined);
+    } else return strMaskedData.replace(' ', '').replace('.', '').replace(',', '.').replace('R$', '');
+  }
+
+  /*   cleanupMoneyMask(strMaskedData: any): any {
+    if (strMaskedData === null || strMaskedData === '' || strMaskedData === undefined) {
+      return (strMaskedData = undefined);
+    } else return strMaskedData.replace(/\,/gi, '').replace('.', '').replace('R$', '');
+  } */
 }
